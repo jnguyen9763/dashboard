@@ -59,7 +59,7 @@ function Searchbar() {
                     title={searchEngineIcon}
                     variant="dark"
                 >
-<Dropdown.Item onSelect={changeSearchEngine} eventKey="Google">{googleIcon}{' '}- Google</Dropdown.Item>
+                    <Dropdown.Item onSelect={changeSearchEngine} eventKey="Google">{googleIcon}{' '}- Google</Dropdown.Item>
                     <Dropdown.Item onSelect={changeSearchEngine} eventKey="Yahoo">{yahooIcon}{' '}- Yahoo</Dropdown.Item>
                     <Dropdown.Item onSelect={changeSearchEngine} eventKey="Bing">{bingIcon}{' '}- Bing</Dropdown.Item>
                 </DropdownButton>
