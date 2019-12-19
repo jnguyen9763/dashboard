@@ -1,6 +1,8 @@
 import React from 'react'
 import RGL, { WidthProvider } from 'react-grid-layout'
-// import styles from './Dashboard.module.css'
+import styles from './Dashboard.module.css'
+
+import Searchbar from '../Searchbar/Searchbar'
 
 const ReactGridLayout = WidthProvider(RGL)
 const originalLayout = getFromLS("layout") || []
@@ -19,6 +21,7 @@ class Dashboard extends React.PureComponent {
     compactType: null,
     preventCollision: true,
     isResizable: false,
+    isDraggable: false,
     onLayoutChange: function() {}
   }
 
@@ -46,7 +49,9 @@ class Dashboard extends React.PureComponent {
           layout={this.state.layout}
           onLayoutChange={this.onLayoutChange}
         >
-            
+            <div className={styles.Test} key="searchbar" data-grid={{x: 0, y: 0, w: 24, h: 2}}>
+                <Searchbar />
+            </div>
         </ReactGridLayout>
     )
   }
