@@ -1,17 +1,24 @@
 import React from 'react'
 import RGL, { WidthProvider } from 'react-grid-layout'
-import styles from './Dashboard.module.css'
+// import styles from './Dashboard.module.css'
 
 const ReactGridLayout = WidthProvider(RGL)
 const originalLayout = getFromLS("layout") || []
+const columns = 50
+const size = window.innerWidth / columns
+
 /**
  * This layout demonstrates how to sync to localstorage.
  */
-export default class Dashboard extends React.PureComponent {
+class Dashboard extends React.PureComponent {
   static defaultProps = {
     className: "layout",
-    cols: 12,
-    rowHeight: 30,
+    margin: [0, 0],
+    cols: columns,
+    rowHeight: size,
+    compactType: null,
+    preventCollision: true,
+    isResizable: false,
     onLayoutChange: function() {}
   }
 
@@ -23,13 +30,6 @@ export default class Dashboard extends React.PureComponent {
     }
 
     this.onLayoutChange = this.onLayoutChange.bind(this)
-    this.resetLayout = this.resetLayout.bind(this)
-  }
-
-  resetLayout() {
-    this.setState({
-      layout: []
-    })
   }
 
   onLayoutChange(layout) {
@@ -41,30 +41,13 @@ export default class Dashboard extends React.PureComponent {
 
   render() {
     return (
-      <div>
-        <button onClick={this.resetLayout}>Reset Layout</button>
         <ReactGridLayout
           {...this.props}
           layout={this.state.layout}
           onLayoutChange={this.onLayoutChange}
         >
-          <div key="1" data-grid={{ w: 2, h: 3, x: 0, y: 0 }}>
-            <span className={styles.Text}>1</span>
-          </div>
-          <div key="2" data-grid={{ w: 2, h: 3, x: 2, y: 0 }}>
-            <span className={styles.Text}>2</span>
-          </div>
-          <div key="3" data-grid={{ w: 2, h: 3, x: 4, y: 0 }}>
-            <span className={styles.Text}>3</span>
-          </div>
-          <div key="4" data-grid={{ w: 2, h: 3, x: 6, y: 0 }}>
-            <span className={styles.Text}>4</span>
-          </div>
-          <div key="5" data-grid={{ w: 2, h: 3, x: 8, y: 0 }}>
-            <span className={styles.Text}>5</span>
-          </div>
+            
         </ReactGridLayout>
-      </div>
     )
   }
 }
@@ -91,3 +74,5 @@ function saveToLS(key, value) {
     )
   }
 }
+
+export default Dashboard

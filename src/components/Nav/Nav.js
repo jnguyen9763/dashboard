@@ -1,6 +1,7 @@
 import React from 'react'
 import Navbar from 'react-bootstrap/Navbar'
 import Button from 'react-bootstrap/Button'
+import styles from './Nav.module.css'
 
 function Nav() {
     return (
@@ -15,8 +16,8 @@ function Nav() {
                 />{" "}    
                 Dashboard
             </Navbar.Brand>
-            <Button type="button" variant="light" className="shadow-none">
-                Add Widget
+            <Button type="button" variant="success" className={styles.Button}>
+                +
             </Button>    
         </Navbar>
     )
