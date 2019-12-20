@@ -5,6 +5,7 @@ import styles from './Dashboard.module.css'
 import Searchbar from '../Searchbar/Searchbar'
 import Quote from '../Quote/Quote'
 import DigitalClock from '../Clock/DigitalClock'
+import AnalogClock from '../Clock/AnalogClock'
 
 const ReactGridLayout = WidthProvider(RGL)
 const originalLayout = getFromLS("layout") || []
@@ -77,6 +78,14 @@ class Dashboard extends React.PureComponent {
 
             <div className={styles.Test} key="digitalClock24" data-grid={{x: 6, y: 2, w: 6, h: 6}}>
                 <DigitalClock hours24={true} time={this.state.date} />
+            </div>
+
+            <div className={styles.Test} key="analogClock" data-grid={{x: 12, y: 2, w: 6, h: 6}}>
+                <AnalogClock time={this.state.date} renderNumbers={false} />
+            </div>
+
+            <div className={styles.Test} key="analogClockNums" data-grid={{x: 18, y: 2, w: 6, h: 6}}>
+                <AnalogClock time={this.state.date} renderNumbers={true} />
             </div>
         </ReactGridLayout>
     )

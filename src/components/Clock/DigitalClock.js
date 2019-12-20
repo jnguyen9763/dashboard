@@ -1,7 +1,7 @@
 import React from 'react'
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar'
 import 'react-circular-progressbar/dist/styles.css'
-import styles from './DigitalClock.module.css'
+import styles from './Clock.module.css'
 
 function DigitalClock({ time, hours24 }) {
     const getHours = () => {
@@ -30,7 +30,7 @@ function DigitalClock({ time, hours24 }) {
 
     return (
         <CircularProgressbar 
-            className={styles.DigitalClock}
+            className={styles.Clock}
             text={`${getHours()} : ${getMinutes()} ${!hours24 ? getPeriod() : ''}`}
             value={getSeconds() / 60}
             maxValue={1}
