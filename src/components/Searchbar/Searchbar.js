@@ -4,11 +4,14 @@ import InputGroup from 'react-bootstrap/InputGroup'
 import Dropdown from 'react-bootstrap/Dropdown'
 import DropdownButton from 'react-bootstrap/DropdownButton'
 import styles from './Searchbar.module.css'
+import googleLogo from '../../assets/images/google.png'
+import yahooLogo from '../../assets/images/yahoo.png'
+import bingLogo from '../../assets/images/bing.png'
 
 function Searchbar() {
-    const googleIcon = <img src="/images/google.png" height="16" width="16" alt="google icon" />;
-    const yahooIcon = <img src="/images/yahoo.png" height="16" width="16" alt="yahoo icon" />;
-    const bingIcon = <img src="/images/bing.png" height="16" width="16"alt="bing icon" />;
+    const googleIcon = <img src={googleLogo} height="16" width="16" alt="google icon" />;
+    const yahooIcon = <img src={yahooLogo} height="16" width="16" alt="yahoo icon" />;
+    const bingIcon = <img src={bingLogo} height="16" width="16"alt="bing icon" />;
     const [input, setInput] = useState('')
     const [searchEngine, setSearchEngine] = useState("Google")
     const [searchEngineIcon, setSearchEngineIcon] = useState(googleIcon)
