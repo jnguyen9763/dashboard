@@ -29,9 +29,6 @@ function DigitalClock({ time, hours24 }) {
     }
 
     return (
-        // <div>
-        //     {getHours()} : {getMinutes()} {getPeriod()}
-        // </div>
         <CircularProgressbar 
             className={styles.DigitalClock}
             text={`${getHours()} : ${getMinutes()} ${!hours24 ? getPeriod() : ''}`}
@@ -51,7 +48,7 @@ function DigitalClock({ time, hours24 }) {
                 // Colors
                 pathColor: `rgba(41, 43, 44, ${getSeconds() / 60})`,
                 textColor: '#292b2c',
-                trailColor: '#d3d3d3'
+                trailColor: 'rgba(169, 169, 169, 0.25)'
             })}
         />
     )
