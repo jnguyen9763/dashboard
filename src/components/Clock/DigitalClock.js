@@ -30,7 +30,7 @@ function DigitalClock({ time, hours24 }) {
 
     return (
         <CircularProgressbar 
-            className={styles.Clock}
+            className={styles.DigitalClock}
             text={`${getHours()} : ${getMinutes()} ${!hours24 ? getPeriod() : ''}`}
             value={getSeconds() / 60}
             maxValue={1}
