@@ -3,6 +3,8 @@ import RGL, { WidthProvider } from 'react-grid-layout'
 import styles from './Dashboard.module.css'
 
 import Searchbar from '../Searchbar/Searchbar'
+import Quote from '../Quote/Quote'
+import DigitalClock from '../Clock/DigitalClock'
 
 const ReactGridLayout = WidthProvider(RGL)
 const originalLayout = getFromLS("layout") || []
@@ -29,10 +31,22 @@ class Dashboard extends React.PureComponent {
     super(props)
 
     this.state = {
-      layout: JSON.parse(JSON.stringify(originalLayout))
+      layout: JSON.parse(JSON.stringify(originalLayout)),
+      date: new Date(),
+      intervalID: null
     }
 
     this.onLayoutChange = this.onLayoutChange.bind(this)
+  }
+
+  componentDidMount() {
+    // clock and date
+    const ID = setInterval(() => this.setState({ date: new Date() }), 1000);
+    this.setState({intervalID: ID});
+  }
+  
+  componentWillUnmount() {
+    clearInterval(this.state.intervalID);
   }
 
   onLayoutChange(layout) {
@@ -51,6 +65,18 @@ class Dashboard extends React.PureComponent {
         >
             <div className={styles.Test} key="searchbar" data-grid={{x: 0, y: 0, w: 24, h: 2}}>
                 <Searchbar />
+            </div>
+
+            <div className={styles.Test} key="quote" data-grid={{x: 24, y: 0, w: 26, h: 3}}>
+                <Quote />
+            </div>
+
+            <div className={styles.Test} key="digitalClock12" data-grid={{x: 0, y: 2, w: 6, h: 6}}>
+                <DigitalClock hours24={false} time={this.state.date} />
+            </div>
+
+            <div className={styles.Test} key="digitalClock24" data-grid={{x: 6, y: 2, w: 6, h: 6}}>
+                <DigitalClock hours24={true} time={this.state.date} />
             </div>
         </ReactGridLayout>
     )
