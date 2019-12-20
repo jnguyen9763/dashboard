@@ -1,4 +1,6 @@
 .Searchbar {
     width: 98%;
     margin: 1%;
+    border-radius: 5px;
+    box-shadow: 3px 3px 5px 0px rgba(63,63,63,0.25);
 }

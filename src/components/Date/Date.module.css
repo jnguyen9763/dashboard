@@ -1,0 +1,21 @@
+.Date {
+    width: 90%;
+    height: 90%;
+    margin: 5%;
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 3px 3px 5px 0px rgba(63,63,63,0.25);
+    text-align: center;
+}
+
+.Date h4 {
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    background-color: indianred;
+    color: white;
+    line-height: 1.5;
+}
+
+.Date h1 {
+    font-weight: bold;
+}

@@ -5,27 +5,27 @@ import styles from './Clock.module.css'
 
 function DigitalClock({ time, hours24 }) {
     const getHours = () => {
-        let hours = time.getHours();
+        let hours = time.getHours()
         if (!hours24) {
-            if (hours < 1) hours += 12;
-            if (hours > 12) hours -= 12;
+            if (hours < 1) hours += 12
+            if (hours > 12) hours -= 12
         }
-        return ('0' + hours).slice(-2);
+        return ('0' + hours).slice(-2)
     }
 
     const getMinutes = () => {
-        const minutes = time.getMinutes();
-        return ('0' + minutes).slice(-2);
+        const minutes = time.getMinutes()
+        return ('0' + minutes).slice(-2)
     }
 
     const getSeconds = () => {
-        const seconds = time.getSeconds();
-        return ('0' + seconds).slice(-2);
+        const seconds = time.getSeconds()
+        return ('0' + seconds).slice(-2)
     }
 
     const getPeriod = () => {
-        const hours = time.getHours();
-        return hours < 12 ? "AM" : "PM";
+        const hours = time.getHours()
+        return hours < 12 ? "AM" : "PM"
     }
 
     return (

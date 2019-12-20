@@ -3,7 +3,10 @@ import Clock from 'react-clock'
 
 function AnalogClock({ time, renderNumbers }) {
     return (
-        <Clock value={time} renderNumbers={renderNumbers}/>
+        <Clock 
+            value={time} 
+            renderNumbers={renderNumbers}
+        />
     )
 }
 

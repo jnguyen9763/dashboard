@@ -6,6 +6,7 @@ import Searchbar from '../Searchbar/Searchbar'
 import Quote from '../Quote/Quote'
 import DigitalClock from '../Clock/DigitalClock'
 import AnalogClock from '../Clock/AnalogClock'
+import DateDisplay from '../Date/Date'
 
 const ReactGridLayout = WidthProvider(RGL)
 const originalLayout = getFromLS("layout") || []
@@ -33,8 +34,7 @@ class Dashboard extends React.PureComponent {
 
     this.state = {
       layout: JSON.parse(JSON.stringify(originalLayout)),
-      date: new Date(),
-      intervalID: null
+      date: new Date()
     }
 
     this.onLayoutChange = this.onLayoutChange.bind(this)
@@ -42,12 +42,7 @@ class Dashboard extends React.PureComponent {
 
   componentDidMount() {
     // clock and date
-    const ID = setInterval(() => this.setState({ date: new Date() }), 1000);
-    this.setState({intervalID: ID});
-  }
-  
-  componentWillUnmount() {
-    clearInterval(this.state.intervalID);
+    setInterval(() => this.setState({ date: new Date() }), 1000);
   }
 
   onLayoutChange(layout) {
@@ -73,11 +68,11 @@ class Dashboard extends React.PureComponent {
             </div>
 
             <div className={styles.Test} key="digitalClock12" data-grid={{x: 0, y: 2, w: 6, h: 6}}>
-                <DigitalClock hours24={false} time={this.state.date} />
+                <DigitalClock time={this.state.date} hours24={false} />
             </div>
 
             <div className={styles.Test} key="digitalClock24" data-grid={{x: 6, y: 2, w: 6, h: 6}}>
-                <DigitalClock hours24={true} time={this.state.date} />
+                <DigitalClock time={this.state.date} hours24={true} />
             </div>
 
             <div className={styles.Test} key="analogClock" data-grid={{x: 12, y: 2, w: 6, h: 6}}>
@@ -86,6 +81,10 @@ class Dashboard extends React.PureComponent {
 
             <div className={styles.Test} key="analogClockNums" data-grid={{x: 18, y: 2, w: 6, h: 6}}>
                 <AnalogClock time={this.state.date} renderNumbers={true} />
+            </div>
+
+            <div className={styles.Test} key="date" data-grid={{x: 24, y: 2, w: 6, h: 6}}>
+                <DateDisplay date={this.state.date} />
             </div>
         </ReactGridLayout>
     )
