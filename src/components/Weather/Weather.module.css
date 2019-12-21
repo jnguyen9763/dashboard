@@ -14,28 +14,19 @@
     z-index: 100;
 }
 
-.Weather canvas {
+.Weather img {
     background-color: white;
     border-radius: 50%;
-    padding: 10px;
-    padding-bottom: 0;
-}
-
-.Weather a {
-    color: black;
-    font-size: 0.5rem;
-    width: 100%;
-    text-align: center;
+    /* margin: 10px; */
 }
 
 .Info {
-    padding-top: 2rem;
+    padding-top: 2.25rem;
 }
 
 .Text {
     width: 95%;
     margin: 2.5%;
-    margin-bottom: 1%;
     text-align: center;
 }
 
