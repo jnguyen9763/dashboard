@@ -1,4 +1,5 @@
 .Quote {
     width: 98%;
     text-align: center;
+    text-shadow: 3px 3px 5px rgba(63,63,63,0.25);
 }

@@ -1,0 +1,45 @@
+.CircleDisplay {
+    width: 90%;
+    margin: 5%;
+    border-radius: 50%;
+}
+
+.Pomodoro {
+    background: rgba(205, 92, 92, 0.75);
+    color: white;
+    border-radius: 5px;
+    box-shadow: 3px 3px 5px 0px rgba(63,63,63,0.25);
+    width: 90%;
+    height: 93%;
+    margin: 5%;
+    padding-top: 2.5%;
+}
+
+.Pomodoro button {
+    height: 32px;
+    width: 32px;
+    padding: 0;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 50%;
+}
+
+.Pomodoro button:hover {
+    border: 1px solid rgba(255, 255, 255, 0.75);
+}
+
+.Pomodoro svg {
+    margin-bottom: 4px;
+    color: white;
+}
+
+.Pomodoro .playButton {
+    height: 48px;
+    width: 48px;
+    margin-top: 12px;
+}
+
+.playButton svg {
+    height: 32px;
+    width: 32px;
+    margin-top: 8px;
+}

@@ -8,6 +8,7 @@ import DigitalClock from '../Clock/DigitalClock'
 import AnalogClock from '../Clock/AnalogClock'
 import DateDisplay from '../Date/Date'
 import Weather from '../Weather/Weather'
+import Pomodoro from '../Pomodoro/Pomodoro'
 
 const ReactGridLayout = WidthProvider(RGL)
 const originalLayout = getFromLS("layout") || []
@@ -90,6 +91,10 @@ class Dashboard extends React.PureComponent {
 
             <div className={styles.Test} key="weather" data-grid={{x: 30, y: 2, w: 12, h: 7}}>
                 <Weather />
+            </div>
+
+            <div className={styles.Test} key="pomodoro" data-grid={{x: 42, y: 2, w: 6, h: 9}}>
+                <Pomodoro />
             </div>
         </ReactGridLayout>
     )
