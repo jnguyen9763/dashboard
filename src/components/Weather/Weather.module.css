@@ -1,0 +1,51 @@
+.Weather{
+    position: absolute;
+    width: 95%;
+    height: 90%;
+    margin: 2.5%;
+    padding-top: 1rem;
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 3px 3px 5px 0px rgba(63,63,63,0.25);
+    text-align: center;
+}
+
+.Weather div {
+    z-index: 100;
+}
+
+.Weather canvas {
+    background-color: white;
+    border-radius: 50%;
+    padding: 10px;
+    padding-bottom: 0;
+}
+
+.Weather a {
+    color: black;
+    font-size: 0.5rem;
+    width: 100%;
+    text-align: center;
+}
+
+.Info {
+    padding-top: 2rem;
+}
+
+.Text {
+    width: 95%;
+    margin: 2.5%;
+    margin-bottom: 1%;
+    text-align: center;
+}
+
+.Header {
+    position: absolute;
+    width: 95%;
+    height: 2.25rem;
+    margin: 2.5%;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    background-color: #292b2c;
+    z-index: 1;
+}

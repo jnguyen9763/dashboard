@@ -88,7 +88,7 @@ class Dashboard extends React.PureComponent {
                 <DateDisplay date={this.state.date} />
             </div>
 
-            <div className={styles.Test} key="weather" data-grid={{x: 30, y: 2, w: 12, h: 6}}>
+            <div className={styles.Test} key="weather" data-grid={{x: 30, y: 2, w: 12, h: 7}}>
                 <Weather />
             </div>
         </ReactGridLayout>
