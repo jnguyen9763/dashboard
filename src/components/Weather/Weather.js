@@ -83,7 +83,7 @@ function Weather() {
                         placeholder="Enter a city name"
                         onChange={e => setLocation(e.target.value)} 
                         onKeyPress={handleKeyPress}
-                    ></Form.Control>
+                    />
                 </Row>
             </Container>
         </div>

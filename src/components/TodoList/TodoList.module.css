@@ -1,0 +1,30 @@
+.TodoList {
+    position: relative;
+    width: 92%;
+    height: 95%;
+    margin: 4%;
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 3px 3px 5px 0px rgba(63,63,63,0.25);
+}
+
+.TodoList h4 {
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    background-color: #292b2c;
+    color: white;
+    line-height: 1.5;
+    text-align: center;
+    margin-bottom: 0;
+}
+
+.TodoList input[type=text] {
+    position: absolute;
+    bottom: 0;
+    width: 95%;
+    margin: 2.5%;
+}
+
+.Container {
+    height: 75%;
+}

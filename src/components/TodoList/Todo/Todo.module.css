@@ -1,0 +1,21 @@
+.Todo button, .Todo button:hover {
+    padding: 0;
+    margin: 0;
+    border: none;
+    background-color: transparent;
+    color: #292b2c;
+}
+
+.Todo svg {
+    height: 24px;
+    width: 24px;
+    margin: 0 5px;
+}
+
+.Outline svg {
+    color: rgba(41, 43, 44, 0.5);
+}
+
+.Outline svg:hover {
+    color: rgba(41, 43, 44, 0.75);
+}

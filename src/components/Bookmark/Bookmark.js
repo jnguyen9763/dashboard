@@ -19,10 +19,10 @@ function Bookmark() {
     return (
         <div className="d-flex justify-content-center">
             {link === '' ? 
-            <Button onClick={openLink} className={styles.Bookmark}>
+            <Button variant="link" onClick={openLink} className={styles.Bookmark}>
                 <MdAdd />
             </Button> :
-            <Button onClick={openLink} className={styles.Link}>
+            <Button variant="link" onClick={openLink} className={styles.Link}>
                 <img src={link + '/favicon.ico'} alt={link} />
             </Button>}
         </div>

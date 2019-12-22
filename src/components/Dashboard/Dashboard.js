@@ -11,6 +11,7 @@ import Weather from '../Weather/Weather'
 import Pomodoro from '../Pomodoro/Pomodoro'
 import Bookmark from '../Bookmark/Bookmark'
 import Note from '../Note/Note'
+import TodoList from '../TodoList/TodoList'
 
 const ReactGridLayout = WidthProvider(RGL)
 const originalLayout = getFromLS("layout") || []
@@ -105,6 +106,10 @@ class Dashboard extends React.PureComponent {
 
                 <div className={styles.Test} key="note" data-grid={{x: 0, y: 8, w: 6, h: 6}}>
                     <Note />
+                </div>
+
+                <div className={styles.Test} key="todolist" data-grid={{x: 6, y: 8, w: 8, h: 12}}>
+                    <TodoList />
                 </div>
             </ReactGridLayout>
         )
