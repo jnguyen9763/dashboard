@@ -2,8 +2,10 @@ import React from 'react'
 import { CircularProgressbarWithChildren, buildStyles } from 'react-circular-progressbar'
 import ButtonToolbar from 'react-bootstrap/ButtonToolbar'
 import Button from 'react-bootstrap/Button'
+import InputGroup from 'react-bootstrap/InputGroup'
+import Form from 'react-bootstrap/Form'
 import styles from './Pomodoro.module.css'
-import { MdPlayArrow, MdReplay, MdSettings, MdPause } from 'react-icons/md'
+import { MdPlayArrow, MdReplay, MdPause } from 'react-icons/md'
 
 class Pomodoro extends React.PureComponent {
     constructor(props) {
@@ -14,7 +16,8 @@ class Pomodoro extends React.PureComponent {
             workDuration: 1500,
             timeLeft: 1500,
             breakDuration: 300,
-            ID: 0
+            ID: 0,
+            showModal: false
         }
 
         this.startClock = this.toggleClock.bind(this, false)
@@ -70,6 +73,29 @@ class Pomodoro extends React.PureComponent {
         return ('0' + minutes).slice(-2) + " : " + ('0' + seconds).slice(-2)
     }
 
+    setWorkDuration(self, workDuration) {
+        self.setState({
+            workDuration: workDuration * 60
+        })
+    }
+
+    setBreakDuration(self, breakDuration) {
+        self.setState({
+            breakDuration: breakDuration * 60
+        })
+    }
+
+    updateTimeLeft(isWorkDuration, duration) {
+        if (isWorkDuration) {
+            this.setState({workDuration: duration})
+            if (this.state.session === 'Work') this.setState({timeLeft: duration})
+        }
+        else {
+            this.setState({breakDuration: duration})
+            if (this.state.session === 'Break') this.setState({timeLeft: duration})
+        }
+    }
+
     render() {
         return (
             <div className={styles.Pomodoro}>
@@ -98,10 +124,15 @@ class Pomodoro extends React.PureComponent {
                 <ButtonToolbar className="d-flex justify-content-around">
                     <Button onClick={this.stopClock} variant="link" size="lg"><MdReplay /></Button>
                     {!this.state.clockRunning ? 
-                    <Button ref="start" onClick={this.startClock} className={styles.playButton} variant="link" size="lg"><MdPlayArrow /></Button> :
-                    <Button ref="start" onClick={this.startClock} className={styles.playButton} variant="link" size="lg"><MdPause /></Button>}
-                    <Button variant="link" size="lg"><MdSettings /></Button>
+                    <Button ref="start" onClick={this.startClock} variant="link" size="lg"><MdPlayArrow /></Button> :
+                    <Button ref="start" onClick={this.startClock} variant="link" size="lg"><MdPause /></Button>}
                 </ButtonToolbar>
+                <InputGroup className={styles.Inputs}>
+                    <Form.Control type="text" size="sm" placeholder="Work" 
+                    value={this.state.workDuration / 60} onChange={(e) => this.updateTimeLeft(true, e.target.value * 60)}/>
+                    <Form.Control type="text" size="sm" placeholder="Break" 
+                    value={this.state.breakDuration / 60} onChange={(e) => this.updateTimeLeft(false, e.target.value * 60)}/>
+                </InputGroup>
             </div>
         )
     }

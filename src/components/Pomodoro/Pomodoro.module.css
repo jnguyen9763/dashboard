@@ -38,8 +38,12 @@
     margin-top: 12px;
 }
 
-.playButton svg {
-    height: 32px;
-    width: 32px;
-    margin-top: 8px;
+.Inputs {
+    width: 95%;
+    margin: 2.5%;
+    margin-top: 5%;
+}
+
+.Inputs input {
+    text-align: center;
 }
