@@ -17,7 +17,8 @@ class Pomodoro extends React.PureComponent {
             timeLeft: 1500,
             breakDuration: 300,
             ID: 0,
-            showModal: false
+            showModal: false,
+            percentage: 0
         }
 
         this.startClock = this.toggleClock.bind(this, false)
@@ -51,6 +52,13 @@ class Pomodoro extends React.PureComponent {
             // decrease time left
             let time = this.state.timeLeft
             this.setState({ timeLeft: --time })
+            if (this.state.session === 'Work') {
+                let workDuration = this.state.workDuration
+                this.setState({ percentage: (workDuration - time) / workDuration})
+            } else {
+                let breakDuration = this.state.breakDuration
+                this.setState({ percentage: (breakDuration - time) / breakDuration})
+            }
         } else if (this.state.timeLeft === 0) {
             // timer is over -> if work switch to break, viceversa
             if (this.state.session === 'Work') {
@@ -100,6 +108,8 @@ class Pomodoro extends React.PureComponent {
         return (
             <div className={styles.Pomodoro}>
                 <CircularProgressbarWithChildren
+                    value={this.state.percentage} 
+                    maxValue={1}
                     className={styles.CircleDisplay}
                     strokeWidth={5}
                     styles={buildStyles({
