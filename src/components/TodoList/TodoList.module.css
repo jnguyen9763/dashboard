@@ -27,4 +27,5 @@
 
 .Container {
     height: 75%;
+    overflow-y: auto;
 }

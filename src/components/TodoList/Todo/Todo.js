@@ -8,8 +8,20 @@ function Todo({ todo }) {
     return (
         <div className={styles.Todo}>
             {!isCheck ?
-            <Button className={styles.Outline} variant="link" onClick={() => setIsChecked(true)}><MdCheckBoxOutlineBlank />{todo}</Button> :
-            <Button variant="link" onClick={() => setIsChecked(false)}><MdCheckBox/>{todo}</Button>}
+            <Button 
+                className={styles.Outline} 
+                variant="link" onClick={() => setIsChecked(true)}
+            >
+                <MdCheckBoxOutlineBlank />
+                {todo}
+            </Button> :
+            <Button
+                variant="link" 
+                onClick={() => setIsChecked(false)}
+            >
+                <MdCheckBox />
+                <span className={styles.Checked}>{todo}</span>
+            </Button>}
         </div>
     )
 
