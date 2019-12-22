@@ -17,12 +17,12 @@ function Bookmark() {
     }
 
     return (
-        <div className="d-flex justify-content-center">
+        <div className={styles.Bookmark}>
             {link === '' ? 
-            <Button variant="link" onClick={openLink} className={styles.Bookmark}>
+            <Button variant="link" onClick={openLink} >
                 <MdAdd />
             </Button> :
-            <Button variant="link" onClick={openLink} className={styles.Link}>
+            <Button variant="link" onClick={openLink}>
                 <img src={link + '/favicon.ico'} alt={link} />
             </Button>}
         </div>

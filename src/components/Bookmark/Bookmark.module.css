@@ -1,33 +1,26 @@
-.Bookmark svg, .Link img {
+.Bookmark, .Bookmark button {
+    height: 100%;
+    width: 100%;
+    padding: 0;
+}
+
+.Bookmark svg, .Bookmark img {
     height: 32px;
     width: 32px;
     border-radius: 50%;
 }
 
-.Bookmark {
-    padding: 0;
-    margin: 15%;
-    background-color: transparent;
-    border-radius: 50%;
+.Bookmark img {
+    opacity: 0.75;
+}
+
+.Bookmark img:hover {
+    opacity: 1;
+}
+
+.Bookmark svg {
+    color:rgba(41, 43, 44, 0.5);
+}
+.Bookmark svg:hover {
     color:rgba(41, 43, 44, 0.75);
-    border: 1px solid rgba(41, 43, 44, 0.25);
-}
-
-.Bookmark:hover {
-    background-color: transparent;
-    color:rgba(41, 43, 44, 0.75);
-    border: 1px solid rgba(41, 43, 44, 0.50);
-}
-
-.Link {
-    padding: 0;
-    margin: 15%;
-    background-color: transparent;
-    border-radius: 50%;
-    border: none;
-    box-shadow: 3px 3px 5px 0px rgba(63,63,63,0.25);
-}
-
-.Link:hover {
-    background-color: transparent;
 }
