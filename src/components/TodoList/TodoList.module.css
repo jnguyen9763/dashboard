@@ -26,6 +26,8 @@
 }
 
 .Container {
+    margin: 0 2.5%;
+    width: 95%;
     height: 75%;
     overflow-y: auto;
 }

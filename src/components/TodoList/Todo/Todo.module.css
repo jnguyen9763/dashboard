@@ -4,12 +4,15 @@
     border: none;
     background-color: transparent;
     color: #292b2c;
+    vertical-align: middle;
+    position: relative;
+    bottom: 1px;
 }
 
 .Todo svg {
     height: 24px;
     width: 24px;
-    margin: 0 5px;
+    margin-right: 5px;
 }
 
 .Outline svg {
