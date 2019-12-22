@@ -32,7 +32,8 @@ class Pomodoro extends React.PureComponent {
             this.setState({
                 clockRunning: false,
                 timeLeft: this.state.workDuration,
-                session: 'Work'
+                session: 'Work',
+                percentage: 0
             })
         } else {
             if (this.state.clockRunning === true) {
@@ -64,12 +65,14 @@ class Pomodoro extends React.PureComponent {
             if (this.state.session === 'Work') {
                 this.setState({
                     session: 'Break',
-                    timeLeft: this.state.breakDuration
+                    timeLeft: this.state.breakDuration,
+                    percentage: 0
                 })
             } else {
                 this.setState({
                     session: 'Work',
-                    timeLeft: this.state.workDuration
+                    timeLeft: this.state.workDuration,
+                    percentage: 0
                 })
             }
         }
