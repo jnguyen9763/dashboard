@@ -1,0 +1,16 @@
+.Note {
+    width: 90%;
+    height: 90%;
+    margin: 5%;
+    box-shadow: 3px 3px 5px 0px rgba(63, 63, 63, 0.25);
+    background-color: lightyellow;
+}
+
+.Note textarea {
+    width: 95%;
+    height: 95%;
+    margin: 2.5%;
+    background-color: transparent;
+    border: none;
+    font-size: 0.75rem;
+}
