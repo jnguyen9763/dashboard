@@ -138,10 +138,18 @@ class Pomodoro extends React.PureComponent {
                     <Button ref="start" onClick={this.startClock} variant="link" size="lg"><MdPause /></Button>}
                 </ButtonToolbar>
                 <InputGroup className={styles.Inputs}>
-                    <Form.Control type="text" size="sm" placeholder="Work" 
-                    value={this.state.workDuration / 60} onChange={(e) => this.updateTimeLeft(true, e.target.value * 60)}/>
-                    <Form.Control type="text" size="sm" placeholder="Break" 
-                    value={this.state.breakDuration / 60} onChange={(e) => this.updateTimeLeft(false, e.target.value * 60)}/>
+                    <Form.Control 
+                        type="text" 
+                        size="sm"
+                        value={this.state.workDuration / 60} 
+                        onChange={(e) => this.updateTimeLeft(true, e.target.value * 60)}
+                    />
+                    <Form.Control 
+                        type="text" 
+                        size="sm" 
+                        value={this.state.breakDuration / 60} 
+                        onChange={(e) => this.updateTimeLeft(false, e.target.value * 60)}
+                    />
                 </InputGroup>
             </div>
         )
