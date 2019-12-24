@@ -3,6 +3,7 @@ import Navbar from 'react-bootstrap/Navbar'
 import Button from 'react-bootstrap/Button'
 import styles from './Nav.module.css'
 import logo from '../../assets/images/logo.png'
+import { MdSettings } from 'react-icons/md'
 
 function Nav() {
     return (
@@ -17,8 +18,8 @@ function Nav() {
                 />{" "}    
                 Dashboard
             </Navbar.Brand>
-            <Button type="button" variant="success" className={styles.Button}>
-                +
+            <Button type="button" variant="link" className={styles.Button}>
+                <MdSettings />
             </Button>    
         </Navbar>
     )
