@@ -11,7 +11,7 @@
     width: 100%;
 }
 
-.Converter button:first-of-type {
+.UnitTypeButton {
     margin: 5% auto;
 }
 

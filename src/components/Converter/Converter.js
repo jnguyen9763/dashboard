@@ -68,6 +68,7 @@ function Converter() {
                             id="unitTypeDropdown"
                             title={unitType}
                             variant="light"
+                            className={styles.UnitTypeButton}
                         >
                             {units.map((type, index) => {
                                 return <Dropdown.Item 
@@ -104,7 +105,7 @@ function Converter() {
                             })}                
                         </DropdownButton>
                     </Col>
-                    <h1>=</h1>
+                    <h3>=</h3>
                     <Col>
                         <Form.Control 
                             type="text" 
