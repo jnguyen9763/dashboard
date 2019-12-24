@@ -13,7 +13,7 @@ function Calculator() {
     const [operation, setOperation] = useState('')
 
     // handles decimal numbers
-    
+
     const addNum = num => {
         if (num === '0' && number === '0') return
         if (hasDecimal && num === '.') return
@@ -61,11 +61,18 @@ function Calculator() {
     }
 
     const equal = () => {
-        if (number === '') return
+        if (number === '' || operatedNumber === '') return
         const num = parseFloat(number)
         const operatedNum = getOperatedNumber()
         setNumber(operations(operatedNum, num).toString())
         setOperatedNumber('')
+    }
+
+    const clearAll = () => {
+        setNumber('')
+        setOperatedNumber('')
+        setHasDecimal(false)
+        setOperation('')
     }
 
     return (
@@ -78,7 +85,7 @@ function Calculator() {
                     <h4>{number}</h4>
                 </Row>
                 <Row>
-                    <Button variant="link" className={styles.Button} as={Col} sm={6}>AC</Button>
+                    <Button variant="link" className={styles.Button} as={Col} onClick={() => clearAll()} sm={6}>AC</Button>
                     <Button variant="link" className={styles.Button} as={Col}><MdBackspace /></Button>
                     <Button variant="link" className={styles.Button} as={Col} onClick={() => operate('/')}>÷</Button>
                 </Row>
