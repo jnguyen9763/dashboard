@@ -1,0 +1,18 @@
+.Calculator {
+    width: 92%;
+    height: 95%;
+    margin: 4%;
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 3px 3px 5px 0px rgba(63,63,63,0.25);
+    text-align: center;
+}
+
+.Calculator div {
+    border: 1px solid black;
+}
+
+.Calculator button {
+    padding: 0;
+    width: 100%;
+}
