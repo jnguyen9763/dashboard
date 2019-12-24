@@ -12,6 +12,7 @@ import Pomodoro from '../Pomodoro/Pomodoro'
 import Bookmark from '../Bookmark/Bookmark'
 import Note from '../Note/Note'
 import TodoList from '../TodoList/TodoList'
+import Converter from '../Converter/Converter'
 
 const ReactGridLayout = WidthProvider(RGL)
 const originalLayout = getFromLS("layout") || []
@@ -110,6 +111,10 @@ class Dashboard extends React.PureComponent {
 
                 <div className={styles.Test} key="todolist" data-grid={{x: 6, y: 8, w: 8, h: 12}}>
                     <TodoList />
+                </div>
+
+                <div className={styles.Test} key="converter" data-grid={{x: 30, y: 9, w: 12, h: 7}}>
+                    <Converter />
                 </div>
             </ReactGridLayout>
         )
