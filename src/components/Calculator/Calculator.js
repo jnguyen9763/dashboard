@@ -12,7 +12,7 @@ function Calculator() {
     const [hasDecimal, setHasDecimal] = useState(false)
     const [operation, setOperation] = useState('')
 
-    // handles decimal numbers
+    // TODO: handle decimal numbers and delimiting
 
     const addNum = num => {
         if (num === '0' && number === '0') return
@@ -66,27 +66,33 @@ function Calculator() {
         const operatedNum = getOperatedNumber()
         setNumber(operations(operatedNum, num).toString())
         setOperatedNumber('')
+        setOperation('')
     }
 
     const clearAll = () => {
         setNumber('')
         setOperatedNumber('')
-        setHasDecimal(false)
         setOperation('')
+        setHasDecimal(false)
+    }
+
+    const deleteDigit = () => {
+        if (number[number.length - 1] === '.') setHasDecimal(false)
+        setNumber(number.slice(0, -1))
     }
 
     return (
         <div className={styles.Calculator}>
             <Container>
                 <Row>
-                    <h6>{operatedNumber}</h6>
+                    <h6>{operatedNumber} {operation}</h6>
                 </Row>
                 <Row>
                     <h4>{number}</h4>
                 </Row>
                 <Row>
                     <Button variant="link" className={styles.Button} as={Col} onClick={() => clearAll()} sm={6}>AC</Button>
-                    <Button variant="link" className={styles.Button} as={Col}><MdBackspace /></Button>
+                    <Button variant="link" className={styles.Button} as={Col} onClick={() => deleteDigit()}><MdBackspace /></Button>
                     <Button variant="link" className={styles.Button} as={Col} onClick={() => operate('/')}>÷</Button>
                 </Row>
                 <Row>
