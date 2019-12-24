@@ -51,9 +51,9 @@ function Calculator() {
                 return (num1 + num2)
             case '-':
                 return (num1 - num2)
-            case '/':
+            case '÷':
                 return (num1 / num2)
-            case '*':
+            case '×':
                 return (num1 * num2)
             default:
                 return;
@@ -83,23 +83,19 @@ function Calculator() {
 
     return (
         <div className={styles.Calculator}>
-            <Container>
-                <Row>
-                    <h6>{operatedNumber} {operation}</h6>
-                </Row>
-                <Row>
-                    <h4>{number}</h4>
-                </Row>
+            <h6>{operatedNumber} {operation}</h6>
+            <h4>{number}</h4>
+            <Container className={styles.Container}>
                 <Row>
                     <Button variant="link" className={styles.Button} as={Col} onClick={() => clearAll()} sm={6}>AC</Button>
                     <Button variant="link" className={styles.Button} as={Col} onClick={() => deleteDigit()}><MdBackspace /></Button>
-                    <Button variant="link" className={styles.Button} as={Col} onClick={() => operate('/')}>÷</Button>
+                    <Button variant="link" className={styles.Button} as={Col} onClick={() => operate('÷')}>÷</Button>
                 </Row>
                 <Row>
                     <Button variant="link" className={styles.Button} as={Col} onClick={() => addNum('1')}>1</Button>
                     <Button variant="link" className={styles.Button} as={Col} onClick={() => addNum('2')}>2</Button>
                     <Button variant="link" className={styles.Button} as={Col} onClick={() => addNum('3')}>3</Button>
-                    <Button variant="link" className={styles.Button} as={Col} onClick={() => operate('*')}>×</Button>
+                    <Button variant="link" className={styles.Button} as={Col} onClick={() => operate('×')}>×</Button>
                 </Row>
                 <Row>
                     <Button variant="link" className={styles.Button} as={Col} onClick={() => addNum('4')}>4</Button>

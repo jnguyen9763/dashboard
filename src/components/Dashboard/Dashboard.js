@@ -118,7 +118,7 @@ class Dashboard extends React.PureComponent {
                     <Converter />
                 </div>
 
-                <div className={styles.Test} key="calculator" data-grid={{x: 14, y: 8, w: 8, h: 12}}>
+                <div className={styles.Test} key="calculator" data-grid={{x: 14, y: 8, w: 8, h: 11}}>
                     <Calculator />
                 </div>
             </ReactGridLayout>

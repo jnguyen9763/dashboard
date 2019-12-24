@@ -1,7 +1,9 @@
 .Calculator {
+    position: relative;
     width: 92%;
-    height: 95%;
+    height: 94%;
     margin: 4%;
+    padding-top: 5%;
     background-color: slateblue;
     border-radius: 5px;
     box-shadow: 3px 3px 5px 0px rgba(63,63,63,0.25);
@@ -12,6 +14,16 @@
     width: 95%;
     text-align: end;
     word-wrap: break-word;
+}
+
+.Calculator h6:after {
+    content: '.';
+    visibility: hidden;
+}
+
+.Container {
+    position: absolute;
+    bottom: 0;
 }
 
 .Button {
