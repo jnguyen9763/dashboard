@@ -2,17 +2,27 @@
     width: 92%;
     height: 95%;
     margin: 4%;
-    background-color: white;
+    background-color: slateblue;
     border-radius: 5px;
     box-shadow: 3px 3px 5px 0px rgba(63,63,63,0.25);
-    text-align: center;
 }
 
-.Calculator div {
-    border: 1px solid black;
+.Calculator h6, .Calculator h4 {
+    margin: 0 2.5%; 
+    width: 95%;
+    text-align: end;
 }
 
-.Calculator button {
-    padding: 0;
-    width: 100%;
+.Button {
+    border-radius: 0%;
+    background-color: rgba(255,255,255,0.25);
+    border: 1px solid slateblue;
+    color: white;
+}
+
+.Button:hover {
+    background-color: rgba(255,255,255,0.5);
+    border: 1px solid slateblue;
+    color: white;
+    text-decoration: none;
 }

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styles from './Calculator.module.css'
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
@@ -7,42 +7,57 @@ import Button from 'react-bootstrap/Button'
 import { MdBackspace } from 'react-icons/md'
 
 function Calculator() {
+    const [number, setNumber] = useState('')
+    const [hasDecimal, setHasDecimal] = useState(false)
+
+    const addNum = num => {
+        let currNum = (' ' + number).slice(1);
+        if (hasDecimal && num === '.') return
+        if (!hasDecimal && num === '.') {
+            setHasDecimal(true)
+            if (currNum === '') setNumber('0.')
+            else setNumber(currNum + num)
+            return
+        }
+        setNumber(currNum + num)
+    }
+
     return (
         <div className={styles.Calculator}>
             <Container>
                 <Row>
-                    <Col><h6>test</h6></Col>
+                    <h6>test</h6>
                 </Row>
                 <Row>
-                    <Col><h4>test</h4></Col>
+                    <h4>{number}</h4>
                 </Row>
                 <Row>
-                    <Col sm={6}><Button>AC</Button></Col>
-                    <Col sm={3}><Button><MdBackspace /></Button></Col>
-                    <Col><Button>÷</Button></Col>
+                    <Button variant="link" className={styles.Button} as={Col} sm={6}>AC</Button>
+                    <Button variant="link" className={styles.Button} as={Col}><MdBackspace /></Button>
+                    <Button variant="link" className={styles.Button} as={Col}>÷</Button>
                 </Row>
                 <Row>
-                    <Col><Button>1</Button></Col>
-                    <Col><Button>2</Button></Col>
-                    <Col><Button>3</Button></Col>
-                    <Col><Button>×</Button></Col>
+                    <Button variant="link" className={styles.Button} as={Col} onClick={() => addNum('1')}>1</Button>
+                    <Button variant="link" className={styles.Button} as={Col} onClick={() => addNum('2')}>2</Button>
+                    <Button variant="link" className={styles.Button} as={Col} onClick={() => addNum('3')}>3</Button>
+                    <Button variant="link" className={styles.Button} as={Col}>×</Button>
                 </Row>
                 <Row>
-                    <Col><Button>4</Button></Col>
-                    <Col><Button>5</Button></Col>
-                    <Col><Button>6</Button></Col>
-                    <Col><Button>+</Button></Col>
+                    <Button variant="link" className={styles.Button} as={Col} onClick={() => addNum('4')}>4</Button>
+                    <Button variant="link" className={styles.Button} as={Col} onClick={() => addNum('5')}>5</Button>
+                    <Button variant="link" className={styles.Button} as={Col} onClick={() => addNum('6')}>6</Button>
+                    <Button variant="link" className={styles.Button} as={Col}>+</Button>
                 </Row>
                 <Row>
-                    <Col><Button>7</Button></Col>
-                    <Col><Button>8</Button></Col>
-                    <Col><Button>9</Button></Col>
-                    <Col><Button>-</Button></Col>
+                    <Button variant="link" className={styles.Button} as={Col} onClick={() => addNum('7')}>7</Button>
+                    <Button variant="link" className={styles.Button} as={Col} onClick={() => addNum('8')}>8</Button>
+                    <Button variant="link" className={styles.Button} as={Col} onClick={() => addNum('9')}>9</Button>
+                    <Button variant="link" className={styles.Button} as={Col}>-</Button>
                 </Row>
                 <Row>
-                    <Col><Button>.</Button></Col>
-                    <Col><Button>0</Button></Col>
-                    <Col sm={6}><Button>=</Button></Col>
+                    <Button variant="link" className={styles.Button} as={Col} onClick={() => addNum('.')}>.</Button>
+                    <Button variant="link" className={styles.Button} as={Col} onClick={() => addNum('0')}>0</Button>
+                    <Button variant="link" className={styles.Button} as={Col} sm={6}>=</Button>
                 </Row>
             </Container>
         </div>
