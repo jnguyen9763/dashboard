@@ -12,7 +12,10 @@ function Calculator() {
     const [hasDecimal, setHasDecimal] = useState(false)
     const [operation, setOperation] = useState('')
 
+    // handles decimal numbers
+    
     const addNum = num => {
+        if (num === '0' && number === '0') return
         if (hasDecimal && num === '.') return
         if (!hasDecimal && num === '.') {
             setHasDecimal(true)
@@ -23,37 +26,53 @@ function Calculator() {
         setNumber(number + num)
     }
 
+    const getOperatedNumber = () => {
+        if (operatedNumber === '') return 0
+        else return parseFloat(operatedNumber)
+    }
+
     const operate = operation => {
+        if (number === '') return
         const num = parseFloat(number)
+        const operatedNum = getOperatedNumber()
         setOperation(operation)
         setNumber('')
+        setHasDecimal(false)
         if (operatedNumber === '') {
-            setOperatedNumber(num)
+            setOperatedNumber(num.toString())
             return
         }
+        setOperatedNumber(operations(operatedNum, num).toString())
+    }
+
+    const operations = (num1, num2) => {
         switch(operation) {
             case '+':
-                setOperatedNumber(operatedNumber + num)
-                break;
+                return (num1 + num2)
             case '-':
-                setOperatedNumber(operatedNumber - num)
-                break;
+                return (num1 - num2)
             case '/':
-                setOperatedNumber(operatedNumber / num)
-                break;
+                return (num1 / num2)
             case '*':
-                setOperatedNumber(operatedNumber * num)
-                break;
+                return (num1 * num2)
             default:
-                break;
+                return;
         }
+    }
+
+    const equal = () => {
+        if (number === '') return
+        const num = parseFloat(number)
+        const operatedNum = getOperatedNumber()
+        setNumber(operations(operatedNum, num).toString())
+        setOperatedNumber('')
     }
 
     return (
         <div className={styles.Calculator}>
             <Container>
                 <Row>
-                    <h6>{operatedNumber === 0 ? '' : operatedNumber}</h6>
+                    <h6>{operatedNumber}</h6>
                 </Row>
                 <Row>
                     <h4>{number}</h4>
@@ -84,7 +103,7 @@ function Calculator() {
                 <Row>
                     <Button variant="link" className={styles.Button} as={Col} onClick={() => addNum('.')}>.</Button>
                     <Button variant="link" className={styles.Button} as={Col} onClick={() => addNum('0')}>0</Button>
-                    <Button variant="link" className={styles.Button} as={Col} sm={6}>=</Button>
+                    <Button variant="link" className={styles.Button} as={Col} onClick={() => equal()} sm={6}>=</Button>
                 </Row>
             </Container>
         </div>
