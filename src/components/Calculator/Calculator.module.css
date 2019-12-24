@@ -11,6 +11,7 @@
     margin: 0 2.5%; 
     width: 95%;
     text-align: end;
+    word-wrap: break-word;
 }
 
 .Button {
