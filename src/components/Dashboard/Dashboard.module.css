@@ -1,5 +1,12 @@
-.Test {
-    background-color: lightblue;
-    border: 1px solid black;
-    z-index: 1;
+.Widget {
+    position: relative;
+}
+
+.Delete {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.5);
 }

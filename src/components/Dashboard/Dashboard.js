@@ -2,7 +2,7 @@ import React from 'react'
 import RGL, { WidthProvider } from 'react-grid-layout'
 import Modal from 'react-bootstrap/Modal'
 import uuid from 'uuid'
-// import styles from './Dashboard.module.css'
+import styles from './Dashboard.module.css'
 
 import Searchbar from '../Searchbar/Searchbar'
 import Quote from '../Quote/Quote'
@@ -16,6 +16,7 @@ import Note from '../Note/Note'
 import TodoList from '../TodoList/TodoList'
 import Converter from '../Converter/Converter'
 import Calculator from '../Calculator/Calculator'
+import Button from 'react-bootstrap/Button'
 
 const ReactGridLayout = WidthProvider(RGL)
 const columns = 50
@@ -43,7 +44,8 @@ class Dashboard extends React.PureComponent {
             layout: originalLayout,
             date: new Date(),
             show: false,
-            currWidgetSize: { i: 'default', w: 1, h: 1 }
+            currWidgetSize: { i: 'default', w: 1, h: 1 },
+            deleteMode: false
         }
 
         this.onLayoutChange = this.onLayoutChange.bind(this)
@@ -73,12 +75,18 @@ class Dashboard extends React.PureComponent {
     }
 
     onDrop = elemParams => {
-        let temp = {...elemParams}
-        let tempLayout = [...this.state.layout]
+        const temp = {...elemParams}
+        const tempLayout = [...this.state.layout]
         temp.i = 'date.' + uuid.v4()
         tempLayout.pop()
         tempLayout.push(temp)
         this.setState({layout: tempLayout})
+    }
+
+    deleteWidget = id => {
+        const tempLayout = [...this.state.layout]
+        const newLayout = tempLayout.filter(widget => widget.i !== id)
+        this.setState({layout: newLayout})
     }
 
     render() {
@@ -131,9 +139,10 @@ class Dashboard extends React.PureComponent {
                                         case 'calculator':
                                             return <Calculator />
                                         default:
-                                            return e.i
+                                            return ''
                                     }
                                 })()}
+                                {this.state.deleteMode ? <div className={styles.Delete} onClick={() => this.deleteWidget(e.i)}></div> : null}
                             </div>
                         )
                     }, this)}
@@ -148,10 +157,12 @@ class Dashboard extends React.PureComponent {
                     <Modal.Header closeButton>
                     <Modal.Title>
                         Widgets
+                        <Button onClick={() => this.setState({deleteMode: !this.state.deleteMode})}>Delete</Button>
                     </Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
                         <div 
+                            className={styles.Widget}
                             style={{height: `${size * 6}px`, width: `${size * 6}px`}}
                             draggable={true}
                             unselectable="on"
