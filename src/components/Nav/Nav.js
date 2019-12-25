@@ -5,7 +5,7 @@ import styles from './Nav.module.css'
 import logo from '../../assets/images/logo.png'
 import { MdSettings } from 'react-icons/md'
 
-function Nav({ addWidget }) {
+function Nav({ modalToggle, setModalToggle }) {
     return (
         <Navbar bg="dark" variant="dark" className="justify-content-between">
             <Navbar.Brand href="/">
@@ -18,7 +18,7 @@ function Nav({ addWidget }) {
                 />{" "}    
                 Dashboard
             </Navbar.Brand>
-            <Button type="button" variant="link" className={styles.Button} onClick={() => addWidget('date')}>
+            <Button type="button" variant="link" className={styles.Button} onClick={() => setModalToggle(!modalToggle)}>
                 <MdSettings />
             </Button>    
         </Navbar>
