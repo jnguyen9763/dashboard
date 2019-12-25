@@ -41,7 +41,8 @@ class Dashboard extends React.PureComponent {
         this.state = {
             layout: originalLayout,
             date: new Date(),
-            show: false
+            show: false,
+            currWidgetSize: { i: 'default', w: 1, h: 1 }
         }
 
         this.onLayoutChange = this.onLayoutChange.bind(this)
@@ -83,6 +84,7 @@ class Dashboard extends React.PureComponent {
                 onLayoutChange={this.onLayoutChange}
                 onDrop={this.onDrop}
                 isDroppable={true}
+                droppingItem={this.state.currWidgetSize}
                 >
                     {this.state.layout.map(function(e) {
                         return (
@@ -134,24 +136,25 @@ class Dashboard extends React.PureComponent {
                 <Modal
                     show={this.state.show}
                     onHide={() => this.setState({show: false})}
-                    dialogClassName="modal-90w"
-                    aria-labelledby="example-custom-modal-styling-title"
+                    // dialogClassName="modal-90w"
+                    // aria-labelledby="example-custom-modal-styling-title"
                 >
                     <Modal.Header closeButton>
-                    <Modal.Title id="example-custom-modal-styling-title">
-                        Custom Modal Styling
+                    <Modal.Title>
+                        Widgets
                     </Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
-                    <p>
-                        Ipsum molestiae natus adipisci modi eligendi? Debitis amet quae unde
-                        commodi aspernatur enim, consectetur. Cumque deleniti temporibus
-                        ipsam atque a dolores quisquam quisquam adipisci possimus
-                        laboriosam. Quibusdam facilis doloribus debitis! Sit quasi quod
-                        accusamus eos quod. Ab quos consequuntur eaque quo rem! Mollitia
-                        reiciendis porro quo magni incidunt dolore amet atque facilis ipsum
-                        deleniti rem!
-                    </p>
+                        <div 
+                            style={{height: `${size * 6}px`, width: `${size * 6}px`}}
+                            draggable={true}
+                            unselectable="on"
+                            onDragStart={e => this.setState({show: false, currWidgetSize: { i: 'date', w: 6, h: 6 }})}
+                        >
+                            <DateDisplay 
+                                date={this.state.date} 
+                            />
+                        </div>
                     </Modal.Body>
                 </Modal>
             </>
