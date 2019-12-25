@@ -1,11 +1,12 @@
 import React from 'react'
 import Navbar from 'react-bootstrap/Navbar'
 import Button from 'react-bootstrap/Button'
+import Form from 'react-bootstrap/Form'
 import styles from './Nav.module.css'
 import logo from '../../assets/images/logo.png'
 import { MdSettings } from 'react-icons/md'
 
-function Nav({ modalToggle, setModalToggle }) {
+function Nav({ modalToggle, setModalToggle, draggable, setDraggable }) {
     return (
         <Navbar bg="dark" variant="dark" className="justify-content-between">
             <Navbar.Brand href="/">
@@ -18,9 +19,17 @@ function Nav({ modalToggle, setModalToggle }) {
                 />{" "}    
                 Dashboard
             </Navbar.Brand>
-            <Button type="button" variant="link" className={styles.Button} onClick={() => setModalToggle(!modalToggle)}>
-                <MdSettings />
-            </Button>    
+            <div className="d-flex align-items-center">
+                <Form.Check 
+                    type="switch"
+                    id="navSwitch"
+                    label=""
+                    onClick={() => setDraggable(!draggable)}
+                />
+                <Button type="button" variant="link" className={styles.Button} onClick={() => setModalToggle(!modalToggle)}>
+                    <MdSettings />
+                </Button>
+            </div>    
         </Navbar>
     )
 }

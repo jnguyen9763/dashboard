@@ -52,12 +52,6 @@ class Dashboard extends React.PureComponent {
     }
 
     componentDidUpdate = prevProps => {
-        // if (prevProps.widget !== this.props.widget) {
-        //     // console.log(this.props.widgets)
-        //     let tempLayout = [...this.state.layout]
-        //     tempLayout.push(this.props.widget)
-        //     this.setState({layout: tempLayout})
-        // }
         if (prevProps.modalToggle !== this.props.modalToggle) {
             this.setState({show: true})
         }
@@ -69,6 +63,7 @@ class Dashboard extends React.PureComponent {
     }
 
     onLayoutChange = layout => {
+        console.log(layout)
         saveToLS("layout", layout)
         this.setState({ layout })
         this.props.onLayoutChange(layout) // updates status display
@@ -97,6 +92,7 @@ class Dashboard extends React.PureComponent {
                 layout={this.state.layout}
                 onLayoutChange={this.onLayoutChange}
                 onDrop={this.onDrop}
+                isDraggable={this.props.draggable}
                 isDroppable={true}
                 droppingItem={this.state.currWidgetSize}
                 >
@@ -142,7 +138,9 @@ class Dashboard extends React.PureComponent {
                                             return ''
                                     }
                                 })()}
-                                {this.state.deleteMode ? <div className={styles.Delete} onClick={() => this.deleteWidget(e.i)}></div> : null}
+                                {this.state.deleteMode ? 
+                                <div className={styles.Delete} onClick={() => this.deleteWidget(e.i)}></div> : 
+                                null}
                             </div>
                         )
                     }, this)}
