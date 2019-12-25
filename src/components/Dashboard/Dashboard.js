@@ -1,6 +1,7 @@
 import React from 'react'
 import RGL, { WidthProvider } from 'react-grid-layout'
 import Modal from 'react-bootstrap/Modal'
+import uuid from 'uuid'
 // import styles from './Dashboard.module.css'
 
 import Searchbar from '../Searchbar/Searchbar'
@@ -21,7 +22,7 @@ const columns = 50
 const size = window.innerWidth / columns
 const rows = Math.round(window.innerHeight / size)
 // const originalLayout = getFromLS("layout") || [{i: ' ', x: 0, y: rows, w: columns, h: 1}]
-const originalLayout = [{i: ' ', x: 0, y: rows, w: columns, h: 1}]
+const originalLayout = [{i: '.' + uuid.v4(), x: 0, y: rows, w: columns, h: 1}]
 
 class Dashboard extends React.PureComponent {
     static defaultProps = {
@@ -74,7 +75,7 @@ class Dashboard extends React.PureComponent {
     onDrop = elemParams => {
         let temp = {...elemParams}
         let tempLayout = [...this.state.layout]
-        temp.i = 'date'
+        temp.i = 'date.' + uuid.v4()
         tempLayout.pop()
         tempLayout.push(temp)
         this.setState({layout: tempLayout})
@@ -91,7 +92,7 @@ class Dashboard extends React.PureComponent {
                 isDroppable={true}
                 droppingItem={this.state.currWidgetSize}
                 >
-                    {this.state.layout.map((e, ind) => {
+                    {this.state.layout.map(e => {
                         return (
                             <div
                                 // className={styles.Test}
@@ -104,7 +105,7 @@ class Dashboard extends React.PureComponent {
                                 }}
                             >
                                 {(() => {
-                                    switch(e.i) {
+                                    switch(e.i.split('.')[0]) {
                                         case 'searchbar':
                                             return <Searchbar />
                                         case 'quote':
@@ -154,7 +155,7 @@ class Dashboard extends React.PureComponent {
                             style={{height: `${size * 6}px`, width: `${size * 6}px`}}
                             draggable={true}
                             unselectable="on"
-                            onDragStart={e => this.setState({show: false, currWidgetSize: { i: 'date', w: 6, h: 6 }})}
+                            onDragStart={e => this.setState({show: false, currWidgetSize: { i: 'date.' + uuid.v4(), w: 6, h: 6 }})}
                         >
                             <DateDisplay 
                                 date={this.state.date} 
