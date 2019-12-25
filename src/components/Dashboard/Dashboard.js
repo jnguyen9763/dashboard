@@ -72,7 +72,12 @@ class Dashboard extends React.PureComponent {
     }
 
     onDrop = elemParams => {
-        alert(`Element parameters: ${JSON.stringify(elemParams)}`);
+        let temp = {...elemParams}
+        let tempLayout = [...this.state.layout]
+        temp.i = 'date'
+        tempLayout.pop()
+        tempLayout.push(temp)
+        this.setState({layout: tempLayout})
     }
 
     render() {
@@ -86,7 +91,7 @@ class Dashboard extends React.PureComponent {
                 isDroppable={true}
                 droppingItem={this.state.currWidgetSize}
                 >
-                    {this.state.layout.map(function(e) {
+                    {this.state.layout.map((e, ind) => {
                         return (
                             <div
                                 // className={styles.Test}
