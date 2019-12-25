@@ -1,14 +1,10 @@
 import React from 'react'
-import Nav from './components/Nav/Nav'
-import Dashboard from './components/Dashboard/Dashboard'
+import WidgetManager from './components/WidgetManager/WidgetManager'
 import '../node_modules/react-grid-layout/css/styles.css'
 
 function App() {
   return (
-    <div>
-      <Nav />
-      <Dashboard />
-    </div>
+    <WidgetManager />
   )
 }
 
