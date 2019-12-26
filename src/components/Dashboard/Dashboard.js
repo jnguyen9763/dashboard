@@ -180,9 +180,10 @@ class Dashboard extends React.PureComponent {
                                     style={{height: `${size * wd[w].h}px`, width: `${size * wd[w].w}px`}}
                                     draggable={true}
                                     unselectable="on"
-                                    onDragStart={e => this.setState(
+                                    onDragStart={() => this.setState(
                                         {show: false, 
-                                        currWidgetSize: { i: w + '.' + uuid.v4(), w: wd[w].w, h: wd[w].h }})}
+                                        currWidgetSize: { i: w + '.' + uuid.v4(), w: wd[w].w, h: wd[w].h }})
+                                    }
                                 >
                                     {(() => {
                                         switch(w) {
