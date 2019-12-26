@@ -74,7 +74,7 @@ class Dashboard extends React.PureComponent {
     onDrop = elemParams => {
         const temp = {...elemParams}
         const tempLayout = [...this.state.layout]
-        temp.i = this.state.currWidgetSize + uuid.v4()
+        temp.i = this.state.currWidgetSize.i
         tempLayout.pop()
         tempLayout.push(temp)
         this.setState({layout: tempLayout})
