@@ -24,7 +24,8 @@ function Nav({ modalToggle, setModalToggle, draggable, setDraggable }) {
                     type="switch"
                     id="navSwitch"
                     label=""
-                    onClick={() => setDraggable(!draggable)}
+                    checked={draggable}
+                    onChange={() => setDraggable(!draggable)}
                 />
                 <Button type="button" variant="link" className={styles.Button} onClick={() => setModalToggle(!modalToggle)}>
                     <MdSettings />

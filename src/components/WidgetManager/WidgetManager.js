@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import Nav from '../Nav/Nav'
 import Dashboard from '../Dashboard/Dashboard'
-// import wd from './WidgetDimensions'
 
 function WidgetManager() {
     const [modalToggle, setModalToggle] = useState(false)

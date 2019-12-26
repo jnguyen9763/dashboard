@@ -2,6 +2,10 @@
     position: relative;
 }
 
+.Mode {
+    border-bottom: 1px solid #dee2e6;
+}
+
 .Delete {
     position: absolute;
     top: 0;
