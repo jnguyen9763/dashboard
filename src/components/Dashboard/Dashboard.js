@@ -91,12 +91,12 @@ class Dashboard extends React.PureComponent {
         return (
             <>
                 <ReactGridLayout
-                {...this.props}
-                layout={this.state.layout}
-                onLayoutChange={this.onLayoutChange}
-                onDrop={this.onDrop}
-                isDraggable={this.props.draggable}
-                droppingItem={this.state.currWidgetSize}
+                    {...this.props}
+                    layout={this.state.layout}
+                    onLayoutChange={this.onLayoutChange}
+                    onDrop={this.onDrop}
+                    isDraggable={this.props.draggable}
+                    droppingItem={this.state.currWidgetSize}
                 >
                     {this.state.layout.map(e => {
                         return (
