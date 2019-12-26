@@ -35,6 +35,7 @@ class Dashboard extends React.PureComponent {
         rowHeight: size,
         compactType: null,
         preventCollision: true,
+        isDroppable: true,
         isResizable: false,
         onLayoutChange: function() {}
     }
@@ -95,7 +96,6 @@ class Dashboard extends React.PureComponent {
                 onLayoutChange={this.onLayoutChange}
                 onDrop={this.onDrop}
                 isDraggable={this.props.draggable}
-                isDroppable={true}
                 droppingItem={this.state.currWidgetSize}
                 >
                     {this.state.layout.map(e => {
