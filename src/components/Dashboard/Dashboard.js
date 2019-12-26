@@ -171,7 +171,7 @@ class Dashboard extends React.PureComponent {
                             />
                         </div>
                     </Modal.Body>
-                    <Modal.Body>
+                    <Modal.Body style={{textAlign: 'center'}}>
                         {wdKeys.map(w => {
                             return (
                                 <div
