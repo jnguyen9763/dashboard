@@ -51,12 +51,9 @@ class Dashboard extends React.PureComponent {
 
     /*
         widgets that contain data
-        quote
-        weather
         pomodoro
         bookmark
         todoList
-        converter
     */
 
     constructor(props) {
@@ -130,6 +127,8 @@ class Dashboard extends React.PureComponent {
                 return this.state.date.getDay()
             case 'Hour':
                 return this.state.date.getHours()
+            case 'Minute':
+                return this.state.date.getMinutes()
             case 'Second':
                 return this.state.date.getSeconds()
         }
@@ -175,7 +174,11 @@ class Dashboard extends React.PureComponent {
                                         case 'pomodoro':
                                             return <Pomodoro />
                                         case 'bookmark':
-                                            return <Bookmark />
+                                            return <Bookmark 
+                                                id={e.i}
+                                                widget={this.state.widgetData[e.i]} 
+                                                updateWidgetData={this.updateWidgetData} 
+                                            />
                                         case 'note':
                                             return <Note 
                                                 id={e.i}
@@ -251,6 +254,7 @@ class Dashboard extends React.PureComponent {
                             >
                                 <Dropdown.Item onSelect={(e) => this.setState({quoteUpdateTime: e})} eventKey="Day">Day</Dropdown.Item>
                                 <Dropdown.Item onSelect={(e) => this.setState({quoteUpdateTime: e})} eventKey="Hour">Hour</Dropdown.Item>
+                                <Dropdown.Item onSelect={(e) => this.setState({quoteUpdateTime: e})} eventKey="Minute">Minute</Dropdown.Item>             
                                 <Dropdown.Item onSelect={(e) => this.setState({quoteUpdateTime: e})} eventKey="Second">Second</Dropdown.Item>             
                             </DropdownButton>
                         </div>
