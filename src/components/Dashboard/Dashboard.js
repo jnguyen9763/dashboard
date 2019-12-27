@@ -52,7 +52,6 @@ class Dashboard extends React.PureComponent {
         weather
         pomodoro
         bookmark
-        note
         todoList
         converter
     */
@@ -109,6 +108,11 @@ class Dashboard extends React.PureComponent {
         let widgetDataCopy = {...this.state.widgetData}
         widgetDataCopy[id] = data
         this.setState({widgetData: widgetDataCopy})
+    }
+
+    widgetPreparation = type => {
+        this.setState({ show: false })
+        this.currWidgetSize = { i: type + '.' + uuid.v4(), w: wd[type].w, h: wd[type].h }
     }
 
     render() {
@@ -212,10 +216,7 @@ class Dashboard extends React.PureComponent {
                                     style={{height: `${size * wd[w].h}px`, width: `${size * wd[w].w}px`}}
                                     draggable={true}
                                     unselectable="on"
-                                    onDragStart={() => this.setState({
-                                        show: false, 
-                                        currWidgetSize: { i: w + '.' + uuid.v4(), w: wd[w].w, h: wd[w].h }
-                                    })}
+                                    onDragStart={() => this.widgetPreparation(w)}
                                 >
                                     {(() => {
                                         switch(w) {
