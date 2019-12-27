@@ -1,29 +1,28 @@
-import React, { useState } from 'react'
+import React from 'react'
 import styles from './Bookmark.module.css'
 import Button from 'react-bootstrap/Button'
 import { MdAdd } from 'react-icons/md'
 
-function Bookmark() {
-    const [link, setLink] = useState('')
+function Bookmark({ id, widget, updateWidgetData }) {
 
     const openLink = () => {
-        if (link === '') {
+        if (widget === undefined) {
             const link = prompt('Enter a link you would like to bookmark')
-            setLink(link)
+            updateWidgetData(id, {link: link})
         }
         else {
-            window.open(link, '_blank')
+            window.open(widget.link, '_blank')
         }
     }
 
     return (
         <div className={styles.Bookmark}>
-            {link === '' ? 
+            {widget === undefined ? 
             <Button variant="link" onClick={openLink} >
                 <MdAdd />
             </Button> :
             <Button variant="link" onClick={openLink}>
-                <img src={link + '/favicon.ico'} alt={link} />
+                <img src={widget.link + '/favicon.ico'} alt={widget.link} />
             </Button>}
         </div>
     )
