@@ -28,7 +28,6 @@ const originalState = getFromLS("layout") || {
     date: new Date(),
     layout: [{i: '.' + uuid.v4(), x: 0, y: rows, w: columns, h: 1}],
     show: false,
-    currWidgetSize: { i: 'default', w: 1, h: 1 },
     deleteMode: false,
     widgetData: {}
     
@@ -61,12 +60,17 @@ class Dashboard extends React.PureComponent {
     constructor(props) {
         super(props)
         this.state = originalState
+        this.currWidgetSize = { i: 'default', w: 1, h: 1 }
         this.onLayoutChange = this.onLayoutChange.bind(this)
     }
 
-    componentDidUpdate = prevProps => {
+    componentDidUpdate = (prevProps, prevState) => {
         if (prevProps.modalToggle !== this.props.modalToggle) {
             this.setState({show: true})
+        }
+        if (prevState.layout !== this.state.layout ||
+            prevState.widgetData !== this.state.widgetData) {
+            saveToLS("layout", this.state)
         }
     }
 
@@ -80,17 +84,14 @@ class Dashboard extends React.PureComponent {
     }
 
     onLayoutChange = layout => {
-        // console.log(layout)
-        saveToLS("layout", this.state)
         this.setState({ layout: layout })
         this.props.onLayoutChange(layout) // updates status display
     }
 
     onDrop = elemParams => {
-        console.log(this.state)
         const temp = {...elemParams}
         const tempLayout = [...this.state.layout]
-        temp.i = this.state.currWidgetSize.i
+        temp.i = this.currWidgetSize.i
         tempLayout.pop()
         tempLayout.push(temp)
         this.setState({
@@ -104,20 +105,10 @@ class Dashboard extends React.PureComponent {
         this.setState({layout: newLayout})
     }
 
-    prepareWidgetData = type => {
-        const id = type + '.' + uuid.v4()
-        this.updateWidgetData(id, {note: ''})
-        this.setState({
-            show: false, 
-            currWidgetSize: { i: id, w: wd[type].w, h: wd[type].h }
-        })
-    }
-
     updateWidgetData = (id, data) => {
-        let widgetDataCopy = [this.state.widgetData]
+        let widgetDataCopy = {...this.state.widgetData}
         widgetDataCopy[id] = data
         this.setState({widgetData: widgetDataCopy})
-        console.log(this.state.widgetData)
     }
 
     render() {
@@ -129,7 +120,7 @@ class Dashboard extends React.PureComponent {
                     onLayoutChange={this.onLayoutChange}
                     onDrop={this.onDrop}
                     isDraggable={this.props.draggable}
-                    droppingItem={this.state.currWidgetSize}
+                    droppingItem={this.currWidgetSize}
                 >
                     {this.state.layout.map(e => {
                         return (
@@ -166,7 +157,11 @@ class Dashboard extends React.PureComponent {
                                         case 'bookmark':
                                             return <Bookmark />
                                         case 'note':
-                                            return <Note id={e.i} note={''} updateWidgetData={this.updateWidgetData} />
+                                            return <Note 
+                                                id={e.i}
+                                                widget={this.state.widgetData[e.i]} 
+                                                updateWidgetData={this.updateWidgetData} 
+                                            />
                                         case 'todoList':
                                             return <TodoList />
                                         case 'converter':
@@ -217,7 +212,10 @@ class Dashboard extends React.PureComponent {
                                     style={{height: `${size * wd[w].h}px`, width: `${size * wd[w].w}px`}}
                                     draggable={true}
                                     unselectable="on"
-                                    onDragStart={() => this.prepareWidgetData(w)}
+                                    onDragStart={() => this.setState({
+                                        show: false, 
+                                        currWidgetSize: { i: w + '.' + uuid.v4(), w: wd[w].w, h: wd[w].h }
+                                    })}
                                 >
                                     {(() => {
                                         switch(w) {
