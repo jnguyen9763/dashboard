@@ -5,10 +5,9 @@ import Todo from './Todo/Todo'
 import uuid from 'uuid'
 
 function TodoList({ id, widget, updateWidgetData }) {
-    // const [todos, setTodos] = useState([])
     const [input, setInput] = useState('')
 
-    const updateTodos = (e) => {
+    const updateTodos = e => {
         e.preventDefault()
         let tempTodos = []
         if (widget !== undefined) tempTodos = [...widget.todos] 
@@ -21,11 +20,22 @@ function TodoList({ id, widget, updateWidgetData }) {
         setInput('')
     }
 
-    const updateChecked = (ID) => {
+    const updateChecked = ID => {
         let tempTodos = [...widget.todos]
         for (let i = 0; i < tempTodos.length; i++) {
             if (tempTodos[i].ID === ID) {
                 tempTodos[i].isChecked = !tempTodos[i].isChecked
+                updateWidgetData(id, {todos: tempTodos})
+                return
+            }
+        }
+    }
+
+    const deleteTodo = ID => {
+        let tempTodos = [...widget.todos]
+        for (let i = 0; i < tempTodos.length; i++) {
+            if (tempTodos[i].ID === ID) {
+                tempTodos.splice(i, 1)
                 updateWidgetData(id, {todos: tempTodos})
                 return
             }
@@ -37,7 +47,14 @@ function TodoList({ id, widget, updateWidgetData }) {
             <h4>To Do</h4>
             <div className={styles.Container}>
                 {widget !== undefined && widget.todos.map(({ID, todo, isChecked}) => {
-                    return <Todo updateChecked={updateChecked} todo={todo} key={ID} ID={ID} isChecked={isChecked} />
+                    return <Todo
+                        deleteTodo={deleteTodo} 
+                        updateChecked={updateChecked} 
+                        todo={todo} 
+                        key={ID} 
+                        ID={ID} 
+                        isChecked={isChecked} 
+                    />
                 })}
             </div>
             <Form onSubmit={updateTodos}>

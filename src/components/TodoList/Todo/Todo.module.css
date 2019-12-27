@@ -1,3 +1,8 @@
+.Todo {
+    display: flex;
+    justify-content: space-between;
+}
+
 .Todo button, .Todo button:hover {
     padding: 0;
     margin: 0;
@@ -16,13 +21,24 @@
 }
 
 .Outline svg {
-    color: rgba(41, 43, 44, 0.5);
+    opacity: 0.75;
 }
 
 .Outline svg:hover {
-    color: rgba(41, 43, 44, 0.75);
+    opacity: 1;
 }
 
 .Checked {
     text-decoration: line-through;
+}
+
+.Delete {
+    height: 18px !important;
+    width: 18px !important;
+    margin-right: 0 !important;
+    opacity: 0.75;
+}
+
+.Delete:hover {
+    opacity: 1;
 }

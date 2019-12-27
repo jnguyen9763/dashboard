@@ -54,11 +54,6 @@ class Dashboard extends React.PureComponent {
         TODO: work on delete function for todoList
     */
 
-    /*
-        widgets that contain data
-        todoList
-    */
-
     constructor(props) {
         super(props)
         originalState.date = new Date()
@@ -134,6 +129,8 @@ class Dashboard extends React.PureComponent {
                 return this.state.date.getMinutes()
             case 'Second':
                 return this.state.date.getSeconds()
+            default:
+                return
         }
     }
 

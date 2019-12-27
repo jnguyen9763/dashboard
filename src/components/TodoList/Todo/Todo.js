@@ -1,13 +1,13 @@
 import React from 'react'
 import styles from './Todo.module.css'
 import Button from 'react-bootstrap/Button'
-import {MdCheckBox, MdCheckBoxOutlineBlank} from 'react-icons/md'
+import {MdCheckBox, MdCheckBoxOutlineBlank, MdDelete} from 'react-icons/md'
 
-function Todo({ todo, isChecked, ID, updateChecked }) {
+function Todo({ todo, isChecked, ID, updateChecked, deleteTodo }) {
     return (
         <div className={styles.Todo}>
             {!isChecked ?
-            <>
+            <div>
                 <Button 
                     className={styles.Outline} 
                     variant="link" onClick={() => updateChecked(ID)}
@@ -15,9 +15,9 @@ function Todo({ todo, isChecked, ID, updateChecked }) {
                     <MdCheckBoxOutlineBlank />
                 </Button>
                 <span>{todo}</span>
-            </>
+            </div>
              :
-            <>
+            <div>
                 <Button
                     variant="link" 
                     onClick={() => updateChecked(ID)}
@@ -25,7 +25,10 @@ function Todo({ todo, isChecked, ID, updateChecked }) {
                     <MdCheckBox />
                 </Button>
                 <span className={styles.Checked}>{todo}</span>
-            </>}
+            </div>}
+            <Button variant="link" onClick={() => deleteTodo(ID)}>
+                <MdDelete className={styles.Delete} />
+            </Button>
         </div>
     )
 
