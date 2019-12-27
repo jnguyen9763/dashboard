@@ -2,6 +2,8 @@ import React from 'react'
 import RGL, { WidthProvider } from 'react-grid-layout'
 import Modal from 'react-bootstrap/Modal'
 import Form from 'react-bootstrap/Form'
+import Dropdown from 'react-bootstrap/Dropdown'
+import DropdownButton from 'react-bootstrap/DropdownButton'
 import uuid from 'uuid'
 import styles from './Dashboard.module.css'
 import wd from '../WidgetManager/WidgetDimensions'
@@ -30,7 +32,8 @@ const originalState = getFromLS("layout") || {
     deleteMode: false,
     widgetData: {},
     hours24: false,
-    clockWithNums: false
+    clockWithNums: false,
+    quoteUpdateTime: 'Day'
 }
 
 class Dashboard extends React.PureComponent {
@@ -73,7 +76,8 @@ class Dashboard extends React.PureComponent {
             prevState.hours24 !== this.state.hours24 ||
             prevState.clockWithNums !== this.state.clockWithNums ||
             prevState.show !== this.state.show ||
-            prevState.deleteMode !== this.state.deleteMode) {
+            prevState.deleteMode !== this.state.deleteMode ||
+            prevState.quoteUpdateTime !== this.state.quoteUpdateTime) {
             saveToLS("layout", this.state)
         }
     }
@@ -120,6 +124,17 @@ class Dashboard extends React.PureComponent {
         this.currWidgetSize = { i: type + '.' + uuid.v4(), w: wd[type].w, h: wd[type].h }
     }
 
+    getTimeForQuote = () => {
+        switch(this.state.quoteUpdateTime) {
+            case 'Day':
+                return this.state.date.getDay()
+            case 'Hour':
+                return this.state.date.getHours()
+            case 'Second':
+                return this.state.date.getSeconds()
+        }
+    }
+
     render() {
         return (
             <>
@@ -148,7 +163,7 @@ class Dashboard extends React.PureComponent {
                                         case 'searchbar':
                                             return <Searchbar />
                                         case 'quote':
-                                            return <Quote time={''} />
+                                            return <Quote time={this.getTimeForQuote()} />
                                         case 'digitalClock':
                                                 return <DigitalClock time={this.state.date} hours24={this.state.hours24} />
                                         case 'analogClock':
@@ -224,8 +239,20 @@ class Dashboard extends React.PureComponent {
                                 id="analogClockModeSwitch"
                                 label=""
                                 checked={this.state.clockWithNums}
-                                onChange={() => this.setState({hours24: !this.state.clockWithNums})}
+                                onChange={() => this.setState({clockWithNums: !this.state.clockWithNums})}
                             />
+                        </div>
+                        <div className="d-flex justify-content-between">
+                            <div>Update quotes every</div>
+                            <DropdownButton
+                                id="quoteUpdateTimeDropdown"
+                                title={this.state.quoteUpdateTime}
+                                variant="light"
+                            >
+                                <Dropdown.Item onSelect={(e) => this.setState({quoteUpdateTime: e})} eventKey="Day">Day</Dropdown.Item>
+                                <Dropdown.Item onSelect={(e) => this.setState({quoteUpdateTime: e})} eventKey="Hour">Hour</Dropdown.Item>
+                                <Dropdown.Item onSelect={(e) => this.setState({quoteUpdateTime: e})} eventKey="Second">Second</Dropdown.Item>             
+                            </DropdownButton>
                         </div>
                     </Modal.Body>
                     <Modal.Body style={{textAlign: 'center'}}>
@@ -244,7 +271,7 @@ class Dashboard extends React.PureComponent {
                                             case 'searchbar':
                                                 return <Searchbar />
                                             case 'quote':
-                                                return <Quote />
+                                                return <Quote time={this.getTimeForQuote()} />
                                             case 'digitalClock':
                                                 return <DigitalClock time={this.state.date} hours24={this.state.hours24} />
                                             case 'analogClock':
