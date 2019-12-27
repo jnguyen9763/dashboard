@@ -23,9 +23,16 @@ const ReactGridLayout = WidthProvider(RGL)
 const columns = 50
 const size = window.innerWidth / columns
 const rows = Math.round(window.innerHeight / size)
-// const originalLayout = getFromLS("layout") || [{i: ' ', x: 0, y: rows, w: columns, h: 1}]
-const originalLayout = [{i: '.' + uuid.v4(), x: 0, y: rows, w: columns, h: 1}]
 const wdKeys = Object.keys(wd)
+const originalState = getFromLS("layout") || {
+    date: new Date(),
+    layout: [{i: '.' + uuid.v4(), x: 0, y: rows, w: columns, h: 1}],
+    show: false,
+    currWidgetSize: { i: 'default', w: 1, h: 1 },
+    deleteMode: false,
+    widgetData: {}
+    
+}
 
 class Dashboard extends React.PureComponent {
     static defaultProps = {
@@ -40,17 +47,20 @@ class Dashboard extends React.PureComponent {
         onLayoutChange: function() {}
     }
 
+    /*
+        widgets that contain data
+        quote
+        weather
+        pomodoro
+        bookmark
+        note
+        todoList
+        converter
+    */
+
     constructor(props) {
         super(props)
-
-        this.state = {
-            layout: originalLayout,
-            date: new Date(),
-            show: false,
-            currWidgetSize: { i: 'default', w: 1, h: 1 },
-            deleteMode: false
-        }
-
+        this.state = originalState
         this.onLayoutChange = this.onLayoutChange.bind(this)
     }
 
@@ -62,29 +72,52 @@ class Dashboard extends React.PureComponent {
 
     componentDidMount = () => {
         // clock and date
-        setInterval(() => this.setState({ date: new Date() }), 1000);
+        this.timerID = setInterval(() => this.setState({ date: new Date() }), 1000)
+    }
+
+    componentWillUnmount() {
+        clearInterval(this.timerID)
     }
 
     onLayoutChange = layout => {
-        console.log(layout)
-        saveToLS("layout", layout)
-        this.setState({ layout })
+        // console.log(layout)
+        saveToLS("layout", this.state)
+        this.setState({ layout: layout })
         this.props.onLayoutChange(layout) // updates status display
     }
 
     onDrop = elemParams => {
+        console.log(this.state)
         const temp = {...elemParams}
         const tempLayout = [...this.state.layout]
         temp.i = this.state.currWidgetSize.i
         tempLayout.pop()
         tempLayout.push(temp)
-        this.setState({layout: tempLayout})
+        this.setState({
+            layout: tempLayout,
+        })
     }
 
     deleteWidget = id => {
         const tempLayout = [...this.state.layout]
         const newLayout = tempLayout.filter(widget => widget.i !== id)
         this.setState({layout: newLayout})
+    }
+
+    prepareWidgetData = type => {
+        const id = type + '.' + uuid.v4()
+        this.updateWidgetData(id, {note: ''})
+        this.setState({
+            show: false, 
+            currWidgetSize: { i: id, w: wd[type].w, h: wd[type].h }
+        })
+    }
+
+    updateWidgetData = (id, data) => {
+        let widgetDataCopy = [this.state.widgetData]
+        widgetDataCopy[id] = data
+        this.setState({widgetData: widgetDataCopy})
+        console.log(this.state.widgetData)
     }
 
     render() {
@@ -117,9 +150,13 @@ class Dashboard extends React.PureComponent {
                                         case 'quote':
                                             return <Quote />
                                         case 'digitalClock':
-                                            return <DigitalClock time={this.state.date} hours24={false} />
+                                                return <DigitalClock time={this.state.date} hours24={false} />
+                                        case 'digitalClock24':
+                                                return <DigitalClock time={this.state.date} hours24={true} />
                                         case 'analogClock':
-                                            return <AnalogClock time={this.state.date} renderNumbers={false} />
+                                                return <AnalogClock time={this.state.date} renderNumbers={false} />
+                                        case 'analogClockNums': 
+                                                return <AnalogClock time={this.state.date} renderNumbers={true} />
                                         case 'date':
                                             return <DateDisplay date={this.state.date} />
                                         case 'weather':
@@ -129,7 +166,7 @@ class Dashboard extends React.PureComponent {
                                         case 'bookmark':
                                             return <Bookmark />
                                         case 'note':
-                                            return <Note />
+                                            return <Note id={e.i} note={''} updateWidgetData={this.updateWidgetData} />
                                         case 'todoList':
                                             return <TodoList />
                                         case 'converter':
@@ -180,10 +217,7 @@ class Dashboard extends React.PureComponent {
                                     style={{height: `${size * wd[w].h}px`, width: `${size * wd[w].w}px`}}
                                     draggable={true}
                                     unselectable="on"
-                                    onDragStart={() => this.setState(
-                                        {show: false, 
-                                        currWidgetSize: { i: w + '.' + uuid.v4(), w: wd[w].w, h: wd[w].h }})
-                                    }
+                                    onDragStart={() => this.prepareWidgetData(w)}
                                 >
                                     {(() => {
                                         switch(w) {
@@ -193,8 +227,12 @@ class Dashboard extends React.PureComponent {
                                                 return <Quote />
                                             case 'digitalClock':
                                                 return <DigitalClock time={this.state.date} hours24={false} />
+                                            case 'digitalClock24':
+                                                return <DigitalClock time={this.state.date} hours24={true} />
                                             case 'analogClock':
                                                 return <AnalogClock time={this.state.date} renderNumbers={false} />
+                                            case 'analogClockNums':
+                                                return <AnalogClock time={this.state.date} renderNumbers={true} />
                                             case 'date':
                                                 return <DateDisplay date={this.state.date} />
                                             case 'weather':
@@ -225,17 +263,17 @@ class Dashboard extends React.PureComponent {
     }
 }
 
-// function getFromLS(key) {
-//     let ls = {}
-//     if (global.localStorage) {
-//         try {
-//             ls = JSON.parse(global.localStorage.getItem("dashboard")) || {}
-//         } catch (e) {
-//             /*Ignore*/
-//         }
-//     }
-//     return ls[key]
-// }
+function getFromLS(key) {
+    let ls = {}
+    if (global.localStorage) {
+        try {
+            ls = JSON.parse(global.localStorage.getItem("dashboard")) || {}
+        } catch (e) {
+            /*Ignore*/
+        }
+    }
+    return ls[key]
+}
 
 function saveToLS(key, value) {
     if (global.localStorage) {

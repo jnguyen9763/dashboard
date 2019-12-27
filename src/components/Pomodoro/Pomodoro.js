@@ -16,7 +16,6 @@ class Pomodoro extends React.PureComponent {
             workDuration: 1500,
             timeLeft: 1500,
             breakDuration: 300,
-            ID: 0,
             showModal: false,
             percentage: 0
         }
@@ -25,10 +24,14 @@ class Pomodoro extends React.PureComponent {
         this.stopClock = this.toggleClock.bind(this, true)
     }
 
+    componentWillUnmount() {
+        clearInterval(this.timerID)
+    }
+
     toggleClock(reset) {
         if (reset) {
             // stop the timer
-            clearInterval(this.state.ID)
+            clearInterval(this.timerID)
             this.setState({
                 clockRunning: false,
                 timeLeft: this.state.workDuration,
@@ -38,12 +41,12 @@ class Pomodoro extends React.PureComponent {
         } else {
             if (this.state.clockRunning === true) {
                 // pause the timer
-                clearInterval(this.state.ID)
+                clearInterval(this.timerID)
                 this.setState({clockRunning: false})
             } else {
                 // start the timer
-                const ID = setInterval(() => this.toggleSession(), 1000)
-                this.setState({ID: ID, clockRunning: true})
+                this.timerID = setInterval(() => this.toggleSession(), 1000)
+                this.setState({clockRunning: true})
             }
         }
     }

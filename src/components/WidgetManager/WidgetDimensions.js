@@ -11,7 +11,15 @@ const widgetDimensions = {
         w: 6,
         h: 6
     },
+    digitalClock24: {
+        w: 6,
+        h: 6
+    },
     analogClock: {
+        w: 6,
+        h: 6
+    },
+    analogClockNums: {
         w: 6,
         h: 6
     },

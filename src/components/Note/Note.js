@@ -1,16 +1,14 @@
-import React, { useState } from 'react'
+import React from 'react'
 import styles from './Note.module.css'
 
-function Note() {
-    const [note, setNote] = useState('')
-
+function Note({ id, note, updateWidgetData }) {
     return (
         <div className={styles.Note}>
             <textarea 
                 style={{resize: "None"}} 
                 placeholder="Type your notes here" 
                 value={note} 
-                onChange={(e) => setNote(e.target.value)}
+                onChange={(e) => updateWidgetData(id, {note: e.target.value})}
             ></textarea>
         </div>
     )
