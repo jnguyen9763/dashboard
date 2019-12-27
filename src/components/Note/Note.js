@@ -3,9 +3,8 @@ import styles from './Note.module.css'
 
 function Note({ id, widget, updateWidgetData }) {
 
-    const updateNote = (note) => {
+    const updateNote = note => {
         if (updateWidgetData !== undefined) {
-            console.log('update note')
             updateWidgetData(id, {note: note})
         }
     }

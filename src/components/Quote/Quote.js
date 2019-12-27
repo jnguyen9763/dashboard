@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import styles from './Quote.module.css'
 
-function Quote() {
+function Quote({ time }) {
     const [quote, setQuote] = useState('')
     const [author, setAuthor] = useState('')
 
@@ -12,11 +12,11 @@ function Quote() {
             setQuote(data.text)
             setAuthor(data.author)
         })
-    }, [])
+    }, [time])
 
     return (
         <div className={styles.Quote}>
-            <div>"{quote}"</div>
+            <div>{quote === '' ? 'quote loading...' : `"${quote}"`}</div>
             {author !== null && <div style={{fontStyle: 'italic'}}>{author}</div>}
         </div>
     )

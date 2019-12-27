@@ -25,12 +25,12 @@ const size = window.innerWidth / columns
 const rows = Math.round(window.innerHeight / size)
 const wdKeys = Object.keys(wd)
 const originalState = getFromLS("layout") || {
-    date: new Date(),
     layout: [{i: '.' + uuid.v4(), x: 0, y: rows, w: columns, h: 1}],
     show: false,
     deleteMode: false,
-    widgetData: {}
-    
+    widgetData: {},
+    hours24: false,
+    clockWithNums: false
 }
 
 class Dashboard extends React.PureComponent {
@@ -58,6 +58,7 @@ class Dashboard extends React.PureComponent {
 
     constructor(props) {
         super(props)
+        originalState.date = new Date()
         this.state = originalState
         this.currWidgetSize = { i: 'default', w: 1, h: 1 }
         this.onLayoutChange = this.onLayoutChange.bind(this)
@@ -68,7 +69,11 @@ class Dashboard extends React.PureComponent {
             this.setState({show: true})
         }
         if (prevState.layout !== this.state.layout ||
-            prevState.widgetData !== this.state.widgetData) {
+            prevState.widgetData !== this.state.widgetData ||
+            prevState.hours24 !== this.state.hours24 ||
+            prevState.clockWithNums !== this.state.clockWithNums ||
+            prevState.show !== this.state.show ||
+            prevState.deleteMode !== this.state.deleteMode) {
             saveToLS("layout", this.state)
         }
     }
@@ -143,15 +148,11 @@ class Dashboard extends React.PureComponent {
                                         case 'searchbar':
                                             return <Searchbar />
                                         case 'quote':
-                                            return <Quote />
+                                            return <Quote time={''} />
                                         case 'digitalClock':
-                                                return <DigitalClock time={this.state.date} hours24={false} />
-                                        case 'digitalClock24':
-                                                return <DigitalClock time={this.state.date} hours24={true} />
+                                                return <DigitalClock time={this.state.date} hours24={this.state.hours24} />
                                         case 'analogClock':
-                                                return <AnalogClock time={this.state.date} renderNumbers={false} />
-                                        case 'analogClockNums': 
-                                                return <AnalogClock time={this.state.date} renderNumbers={true} />
+                                                return <AnalogClock time={this.state.date} renderNumbers={this.state.clockWithNums} />
                                         case 'date':
                                             return <DateDisplay date={this.state.date} />
                                         case 'weather':
@@ -200,10 +201,30 @@ class Dashboard extends React.PureComponent {
                             <div>Current mode: {this.state.deleteMode ? 'Remove widgets' : 'Add widgets'}</div>
                             <Form.Check 
                                 type="switch"
-                                id="dashbordSwitch"
+                                id="deleteModeSwitch"
                                 label=""
                                 checked={this.state.deleteMode}
                                 onChange={() => this.setState({deleteMode: !this.state.deleteMode})}
+                            />
+                        </div>
+                        <div className="d-flex justify-content-between">
+                            <div>Digital Clock display: {this.state.hours24 ? '24 hours' : '12 hours'}</div>
+                            <Form.Check 
+                                type="switch"
+                                id="digitalClockModeSwitch"
+                                label=""
+                                checked={this.state.hours24}
+                                onChange={() => this.setState({hours24: !this.state.hours24})}
+                            />
+                        </div>
+                        <div className="d-flex justify-content-between">
+                            <div>Analog Clock display: {this.state.clockWithNums ? 'with numbers' : 'without numbers'}</div>
+                            <Form.Check 
+                                type="switch"
+                                id="analogClockModeSwitch"
+                                label=""
+                                checked={this.state.clockWithNums}
+                                onChange={() => this.setState({hours24: !this.state.clockWithNums})}
                             />
                         </div>
                     </Modal.Body>
@@ -225,13 +246,9 @@ class Dashboard extends React.PureComponent {
                                             case 'quote':
                                                 return <Quote />
                                             case 'digitalClock':
-                                                return <DigitalClock time={this.state.date} hours24={false} />
-                                            case 'digitalClock24':
-                                                return <DigitalClock time={this.state.date} hours24={true} />
+                                                return <DigitalClock time={this.state.date} hours24={this.state.hours24} />
                                             case 'analogClock':
-                                                return <AnalogClock time={this.state.date} renderNumbers={false} />
-                                            case 'analogClockNums':
-                                                return <AnalogClock time={this.state.date} renderNumbers={true} />
+                                                return <AnalogClock time={this.state.date} renderNumbers={this.state.clockWithNums} />
                                             case 'date':
                                                 return <DateDisplay date={this.state.date} />
                                             case 'weather':
