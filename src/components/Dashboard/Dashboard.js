@@ -50,9 +50,12 @@ class Dashboard extends React.PureComponent {
     }
 
     /*
+        TODO: work on bookmark modal and favicon
+        TODO: work on delete function for todoList
+    */
+
+    /*
         widgets that contain data
-        pomodoro
-        bookmark
         todoList
     */
 
@@ -186,7 +189,11 @@ class Dashboard extends React.PureComponent {
                                                 updateWidgetData={this.updateWidgetData} 
                                             />
                                         case 'todoList':
-                                            return <TodoList />
+                                            return <TodoList 
+                                                id={e.i}
+                                                widget={this.state.widgetData[e.i]} 
+                                                updateWidgetData={this.updateWidgetData}
+                                            />
                                         case 'converter':
                                             return <Converter />
                                         case 'calculator':

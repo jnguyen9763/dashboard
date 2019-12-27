@@ -4,28 +4,29 @@ import Form from 'react-bootstrap/Form'
 import Todo from './Todo/Todo'
 import uuid from 'uuid'
 
-function TodoList() {
-    const [todos, setTodos] = useState([])
+function TodoList({ id, widget, updateWidgetData }) {
+    // const [todos, setTodos] = useState([])
     const [input, setInput] = useState('')
 
     const updateTodos = (e) => {
         e.preventDefault()
-        let tempTodos = [...todos]
+        let tempTodos = []
+        if (widget !== undefined) tempTodos = [...widget.todos] 
         tempTodos.push({
             ID: uuid.v4(),
             todo: input,
             isChecked: false
         })
-        setTodos(tempTodos)
+        if (updateWidgetData !== undefined) updateWidgetData(id, {todos: tempTodos})
         setInput('')
     }
 
     const updateChecked = (ID) => {
-        let tempTodos = [...todos]
+        let tempTodos = [...widget.todos]
         for (let i = 0; i < tempTodos.length; i++) {
             if (tempTodos[i].ID === ID) {
                 tempTodos[i].isChecked = !tempTodos[i].isChecked
-                setTodos(tempTodos)
+                updateWidgetData(id, {todos: tempTodos})
                 return
             }
         }
@@ -35,7 +36,7 @@ function TodoList() {
         <div className={styles.TodoList}>
             <h4>To Do</h4>
             <div className={styles.Container}>
-                {todos.map(({ID, todo, isChecked}) => {
+                {widget !== undefined && widget.todos.map(({ID, todo, isChecked}) => {
                     return <Todo updateChecked={updateChecked} todo={todo} key={ID} ID={ID} isChecked={isChecked} />
                 })}
             </div>
