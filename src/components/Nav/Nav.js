@@ -5,7 +5,6 @@ import Form from 'react-bootstrap/Form'
 import styles from './Nav.module.css'
 import logo from '../../assets/images/logo.png'
 import { MdSettings } from 'react-icons/md'
-import { IoMdHelp } from 'react-icons/io'
 
 function Nav({ modalToggle, setModalToggle, draggable, setDraggable }) {
     return (
@@ -30,9 +29,6 @@ function Nav({ modalToggle, setModalToggle, draggable, setDraggable }) {
                 />
                 <Button type="button" variant="link" className={styles.Button} onClick={() => setModalToggle(!modalToggle)}>
                     <MdSettings />
-                </Button>
-                <Button type="button" variant="link" className={styles.Button}>
-                    <IoMdHelp />
                 </Button>
             </div>    
         </Navbar>
