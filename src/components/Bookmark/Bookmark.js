@@ -8,6 +8,7 @@ import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import { MdAdd } from 'react-icons/md'
 import isUrl from 'is-url'
+import InputGroup from 'react-bootstrap/InputGroup'
 
 function Bookmark({ id, widget, updateWidgetData, dragMode }) {
     const [show, setShow] = useState(false)
@@ -16,6 +17,7 @@ function Bookmark({ id, widget, updateWidgetData, dragMode }) {
     const [message, setMessage] = useState('')
     const [customizeIcon, setCustomizeIcon] = useState(false)
     const [isCircle, setIsCircle] = useState(false)
+    const [check, setCheck] = useState(false)
 
     const openLink = () => {
         if (id !== undefined) {
@@ -101,7 +103,7 @@ function Bookmark({ id, widget, updateWidgetData, dragMode }) {
                         <Form onSubmit={e => e.preventDefault()}>
                             <Container>
                                 <Row>
-                                    <Col>
+                                    <Col sm={3}>
                                         <div className={styles.IconContainer}>
                                             <img 
                                                 className={isCircle ? styles.Circle : undefined} 
@@ -113,20 +115,38 @@ function Bookmark({ id, widget, updateWidgetData, dragMode }) {
                                     <Col>
                                         <h6>Icon</h6>
                                         <Form.Check 
+                                            onClick={() => setCheck(false)} 
                                             onChange={() => saveURLIcon(url + 'favicon.ico')} 
                                             type="radio" 
                                             label="favicon.ico" 
                                             name="iconType" 
                                             defaultChecked
                                         />
-                                        <Form.Check 
+                                        <Form.Check
+                                            onClick={() => setCheck(false)} 
                                             onChange={() => saveURLIcon(url + 'apple-touch-icon.png')} 
                                             type="radio" 
                                             label="apple-touch-icon.png" 
                                             name="iconType" 
                                         />
-                                        <div>Or set your own link:</div>
-                                        <Form.Control type="text" size="sm" onChange={e => saveURLIcon(e.target.value)} />
+                                        <InputGroup>
+                                            <InputGroup.Prepend>
+                                                <Form.Check 
+                                                    onClick={() => setCheck(true)} 
+                                                    type="radio" 
+                                                    label="" 
+                                                    name="iconType"
+                                                    checked={check} 
+                                                />
+                                            </InputGroup.Prepend>
+                                            <Form.Control 
+                                                type="text" 
+                                                size="sm" 
+                                                onChange={e => saveURLIcon(e.target.value)} 
+                                                onFocus={() => setCheck(true)}
+                                                placeholder="Set your own icon with a URL"
+                                            />
+                                        </InputGroup>
                                         <br />
                                         <h6>Shape</h6>
                                         <Form.Check 
