@@ -4,23 +4,45 @@
     padding: 0;
 }
 
-.Bookmark svg, .Bookmark img {
+.Bookmark svg, .Bookmark img, .IconContainer img {
     height: 32px;
     width: 32px;
-    border-radius: 50%;
 }
 
 .Bookmark img {
-    opacity: 0.75;
+    transition: 0.1s;
 }
 
 .Bookmark img:hover {
-    opacity: 1;
+    box-shadow: 3px 3px 5px 0px rgba(63, 63, 63, 0.25);
 }
 
 .Bookmark svg {
-    color:rgba(41, 43, 44, 0.5);
+    color:#292b2c;
+    background-color: transparent;
+    transition: 0.3s;
 }
+
+.Bookmark svg, .Circle {
+    border-radius: 50%;
+}
+
 .Bookmark svg:hover {
-    color:rgba(41, 43, 44, 0.75);
+    background-color: rgba(41, 43, 44, 0.25);
+}
+
+.IconCustomize {
+    display: none
+}
+
+.IconContainer img {
+    box-shadow: 3px 3px 5px 0px rgba(63, 63, 63, 0.25);
+}
+
+.IconContainer {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

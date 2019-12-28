@@ -6,8 +6,7 @@ import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import styles from './Converter.module.css'
-
-const convert = require('convert-units')
+import convert from 'convert-units'
 
 function Converter() {
     const units = convert().measures()

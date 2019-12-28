@@ -51,7 +51,6 @@ class Dashboard extends React.PureComponent {
 
     /*
         TODO: work on bookmark modal and favicon
-        TODO: work on delete function for todoList
     */
 
     constructor(props) {
