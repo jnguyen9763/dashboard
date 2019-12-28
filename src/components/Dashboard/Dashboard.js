@@ -33,6 +33,7 @@ const originalState = getFromLS("layout") || {
     widgetData: {},
     hours24: false,
     clockWithNums: false,
+    tempUnit: 'F',
     quoteUpdateTime: 'Day'
 }
 
@@ -67,6 +68,7 @@ class Dashboard extends React.PureComponent {
             prevState.clockWithNums !== this.state.clockWithNums ||
             prevState.show !== this.state.show ||
             prevState.deleteMode !== this.state.deleteMode ||
+            prevState.tempUnit !== this.state.tempUnit ||
             prevState.quoteUpdateTime !== this.state.quoteUpdateTime) {
             saveToLS("layout", this.state)
         }
@@ -164,7 +166,7 @@ class Dashboard extends React.PureComponent {
                                         case 'date':
                                             return <DateDisplay date={this.state.date} />
                                         case 'weather':
-                                            return <Weather />
+                                            return <Weather unit={this.state.tempUnit} />
                                         case 'pomodoro':
                                             return <Pomodoro />
                                         case 'bookmark':
@@ -247,6 +249,16 @@ class Dashboard extends React.PureComponent {
                             />
                         </div>
                         <div className="d-flex justify-content-between">
+                            <div>Display temperature in: °{this.state.tempUnit}</div>
+                            <Form.Check 
+                                type="switch"
+                                id="weatherSwitch"
+                                label=""
+                                checked={this.state.tempUnit === 'C'}
+                                onChange={() => this.state.tempUnit === 'C' ? this.setState({tempUnit: 'F'}) : this.setState({tempUnit: 'C'})}
+                            />
+                        </div>
+                        <div className="d-flex justify-content-between">
                             <div>Update quotes every</div>
                             <DropdownButton
                                 id="quoteUpdateTimeDropdown"
@@ -284,7 +296,7 @@ class Dashboard extends React.PureComponent {
                                             case 'date':
                                                 return <DateDisplay date={this.state.date} />
                                             case 'weather':
-                                                return <Weather />
+                                                return <Weather unit={this.state.tempUnit} />
                                             case 'pomodoro':
                                                 return <Pomodoro />
                                             case 'bookmark':
@@ -304,6 +316,7 @@ class Dashboard extends React.PureComponent {
                                 </div>
                             )
                         }, this)}
+                        {/* <div>Weather widget made with <a href="https://openweathermap.org/" target="_blank">Open Weather Map</a></div> */}
                     </Modal.Body>
                 </Modal>
             </>

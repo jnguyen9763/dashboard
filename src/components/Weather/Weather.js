@@ -6,12 +6,14 @@ import Col from 'react-bootstrap/Col'
 import Form from 'react-bootstrap/Form'
 import styles from './Weather.module.css'
 
-function Weather() {
+function Weather({ unit }) {
     const [location, setLocation] = useState('')
-    const [temperature, setTemperature] = useState(0)
     const [description, setDescription] = useState('')
-    const [feelsLike, setFeelsLike] = useState(0)
     const [icon, setIcon] = useState(0)
+    const [temperature, setTemperature] = useState(0)
+    const [feelsLike, setFeelsLike] = useState(0)
+    const [tempK, setTempK] = useState(0)
+    const [feelsK, setFeelsK] = useState(0)
 
     useEffect(() => {
         window.navigator.geolocation.getCurrentPosition(location => {
@@ -20,15 +22,26 @@ function Weather() {
             + location.coords.latitude + "&lon=" + location.coords.longitude + "&APPID=" + API_KEY
             axios.get(url).then(res => {
                 setLocation(res.data.name)
-                setTemperature(Math.round(res.data.main.temp * 9 / 5 - 459.67))
                 setDescription(res.data.weather[0].main)
-                setFeelsLike(Math.round(res.data.main.feels_like * 9 / 5 - 459.67))
+                setTempK(res.data.main.temp)
+                setFeelsK(res.data.main.feels_like)
                 setIcon("http://openweathermap.org/img/wn/" + res.data.weather[0].icon + "@2x.png")
             })
         })
     }, [])
 
-    const handleKeyPress = (e) => {
+    useEffect(() => {
+        if (unit === 'F') {
+            setTemperature(Math.round(tempK * 9 / 5 - 459.67))
+            setFeelsLike(Math.round(feelsK * 9 / 5 - 459.67))
+        }
+        else {
+            setTemperature(Math.round(tempK - 273.15))
+            setFeelsLike(Math.round(feelsK - 273.15))
+        }
+    }, [unit, tempK, feelsK])
+
+    const handleKeyPress = e => {
         const API_KEY = process.env.REACT_APP_WEATHER_API_KEY
         if (e.key === 'Enter') {
             if (e.target.value === '') {
@@ -46,12 +59,12 @@ function Weather() {
         }
     }
 
-    const fetchWeather = (url) => {
+    const fetchWeather = url => {
         axios.get(url).then(res => {
             setLocation(res.data.name)
-            setTemperature(Math.round(res.data.main.temp * 9 / 5 - 459.67))
             setDescription(res.data.weather[0].main)
-            setFeelsLike(Math.round(res.data.main.feels_like * 9 / 5 - 459.67))
+            setTempK(res.data.main.temp)
+            setFeelsK(res.data.main.feels_like)
             setIcon("http://openweathermap.org/img/wn/" + res.data.weather[0].icon + "@2x.png")
         })
     }
@@ -63,7 +76,7 @@ function Weather() {
                 <Row>
                     <Col className={styles.Info}>
                         <h6>Temp</h6>
-                        <h6>{Math.round(temperature)}°F</h6>
+                        <h6>{temperature}°{unit}</h6>
                     </Col>
                     <Col>
                         <img src={icon} alt={description} height={64} width={64} />
@@ -71,7 +84,7 @@ function Weather() {
                     </Col>
                     <Col className={styles.Info}>
                         <h6>Feels</h6>
-                        <h6>{feelsLike}°F</h6>
+                        <h6>{feelsLike}°{unit}</h6>
                     </Col>
                 </Row>
                 <Row>
