@@ -14,10 +14,24 @@
     margin-left: 0.5rem;
 }
 
-.Searchbar input[type="text"] {
+.Searchbar input[type="text"], .Dropdown button {
     border: none;
     background-color: transparent;
-    padding-left: 0.75rem;
+    /* padding-left: 0.75rem; */
+}
+
+.Searchbar input[type="text"] {
+    padding-left: 0;
+}
+
+.Dropdown button {
+    color: black;
+    padding-left: 0.5rem;
+}
+
+.Dropdown button:hover {
+    background-color: transparent;
+    color: black;
 }
 
 .Searchbar svg {
