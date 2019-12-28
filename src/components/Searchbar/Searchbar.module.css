@@ -1,6 +1,28 @@
 .Searchbar {
+    display: flex;
+    align-items: center;
     width: 98%;
     margin: 1%;
-    border-radius: 5px;
+    border-radius: 50px;
     box-shadow: 3px 3px 5px 0px rgba(63,63,63,0.25);
+    background-color: white;
+}
+
+.Searchbar img {
+    height: 24px;
+    width: 24px;
+    margin-left: 0.5rem;
+}
+
+.Searchbar input[type="text"] {
+    border: none;
+    background-color: transparent;
+    padding-left: 0.75rem;
+}
+
+.Searchbar svg {
+    height: 24px;
+    width: 24px;
+    color: black;
+    border-radius: 50%;
 }
