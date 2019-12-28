@@ -2,6 +2,8 @@ import React from 'react'
 import Navbar from 'react-bootstrap/Navbar'
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
+import OverlayTrigger from 'react-bootstrap/OverlayTrigger'
+import Tooltip from 'react-bootstrap/Tooltip'
 import styles from './Nav.module.css'
 import logo from '../../assets/images/logo.png'
 import { MdSettings } from 'react-icons/md'
@@ -20,13 +22,18 @@ function Nav({ modalToggle, setModalToggle, draggable, setDraggable }) {
                 Dashboard
             </Navbar.Brand>
             <div className="d-flex align-items-center">
-                <Form.Check 
-                    type="switch"
-                    id="navSwitch"
-                    label=""
-                    checked={draggable}
-                    onChange={() => setDraggable(!draggable)}
-                />
+                <OverlayTrigger
+                    placement="bottom"
+                    overlay={<Tooltip>Drag mode: {draggable ? 'On' : 'Off'}</Tooltip>}
+                >
+                    <Form.Check 
+                        type="switch"
+                        id="navSwitch"
+                        label=""
+                        checked={draggable}
+                        onChange={() => setDraggable(!draggable)}
+                    />
+                </OverlayTrigger>
                 <Button type="button" variant="link" className={styles.Button} onClick={() => setModalToggle(!modalToggle)}>
                     <MdSettings />
                 </Button>

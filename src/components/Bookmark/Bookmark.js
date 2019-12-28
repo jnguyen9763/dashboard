@@ -132,7 +132,7 @@ function Bookmark({ id, widget, updateWidgetData, dragMode }) {
                                         <InputGroup>
                                             <InputGroup.Prepend>
                                                 <Form.Check 
-                                                    onClick={() => setCheck(true)} 
+                                                    onChange={() => setCheck(true)} 
                                                     type="radio" 
                                                     label="" 
                                                     name="iconType"

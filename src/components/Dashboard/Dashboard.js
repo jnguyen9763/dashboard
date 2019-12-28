@@ -143,7 +143,6 @@ class Dashboard extends React.PureComponent {
                     {this.state.layout.map(e => {
                         return (
                             <div
-                                // className={styles.Test}
                                 key={e.i}
                                 data-grid={{
                                     x: e.x,
@@ -225,6 +224,8 @@ class Dashboard extends React.PureComponent {
                                 onChange={() => this.setState({deleteMode: !this.state.deleteMode})}
                             />
                         </div>
+                    </Modal.Body>
+                    <Modal.Body className={styles.Mode}>
                         <div className="d-flex justify-content-between">
                             <div>Digital Clock display: {this.state.hours24 ? '24 hours' : '12 hours'}</div>
                             <Form.Check 
