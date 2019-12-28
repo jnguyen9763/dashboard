@@ -9,7 +9,7 @@ import Col from 'react-bootstrap/Col'
 import { MdAdd } from 'react-icons/md'
 import isUrl from 'is-url'
 
-function Bookmark({ id, widget, updateWidgetData }) {
+function Bookmark({ id, widget, updateWidgetData, dragMode }) {
     const [show, setShow] = useState(false)
     const [url, setURL] = useState('')
     const [urlIcon, setUrlIcon] = useState('')
@@ -63,10 +63,10 @@ function Bookmark({ id, widget, updateWidgetData }) {
         <>
             <div className={styles.Bookmark}>
                 {widget === undefined ? 
-                <Button variant="link" onClick={openLink} >
+                <Button variant="link" onClick={openLink} disabled={dragMode} >
                     <MdAdd />
                 </Button> :
-                <Button variant="link" onClick={openLink}>
+                <Button variant="link" onClick={openLink} disabled={dragMode}>
                     <img 
                         className={widget.circular ? styles.Circle : undefined} 
                         src={widget.icon} 

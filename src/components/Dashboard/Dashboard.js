@@ -49,10 +49,6 @@ class Dashboard extends React.PureComponent {
         onLayoutChange: function() {}
     }
 
-    /*
-        TODO: work on bookmark modal and favicon
-    */
-
     constructor(props) {
         super(props)
         originalState.date = new Date()
@@ -176,7 +172,8 @@ class Dashboard extends React.PureComponent {
                                             return <Bookmark 
                                                 id={e.i}
                                                 widget={this.state.widgetData[e.i]} 
-                                                updateWidgetData={this.updateWidgetData} 
+                                                updateWidgetData={this.updateWidgetData}
+                                                dragMode={this.props.draggable} 
                                             />
                                         case 'note':
                                             return <Note 
