@@ -24,3 +24,23 @@ button:hover {
     box-shadow:none !important;
     text-decoration: none !important;
 }
+
+/* width */
+::-webkit-scrollbar {
+    width: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: transparent; 
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: rgba(169, 169, 169, 0.75);
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #292b2c;
+}
