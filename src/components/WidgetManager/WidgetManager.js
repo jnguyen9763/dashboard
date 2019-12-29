@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import Nav from '../Nav/Nav'
 import Dashboard from '../Dashboard/Dashboard'
+import { getFromLS } from './LocalStorage'
 
 function WidgetManager() {
     const [modalToggle, setModalToggle] = useState(false)
@@ -8,7 +9,8 @@ function WidgetManager() {
     
     return (
         <div>
-            <Nav 
+            <Nav
+                showModal={getFromLS("layout") === undefined} 
                 modalToggle={modalToggle} 
                 setModalToggle={setModalToggle}
                 draggable={draggable}

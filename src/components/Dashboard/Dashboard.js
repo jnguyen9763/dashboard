@@ -7,7 +7,7 @@ import DropdownButton from 'react-bootstrap/DropdownButton'
 import uuid from 'uuid'
 import styles from './Dashboard.module.css'
 import wd from '../WidgetManager/WidgetDimensions'
-
+import { getFromLS, saveToLS } from '../WidgetManager/LocalStorage'
 import Searchbar from '../Searchbar/Searchbar'
 import Quote from '../Quote/Quote'
 import DigitalClock from '../Clock/DigitalClock'
@@ -320,29 +320,6 @@ class Dashboard extends React.PureComponent {
                     </Modal.Body>
                 </Modal>
             </>
-        )
-    }
-}
-
-function getFromLS(key) {
-    let ls = {}
-    if (global.localStorage) {
-        try {
-            ls = JSON.parse(global.localStorage.getItem("dashboard")) || {}
-        } catch (e) {
-            /*Ignore*/
-        }
-    }
-    return ls[key]
-}
-
-function saveToLS(key, value) {
-    if (global.localStorage) {
-        global.localStorage.setItem(
-            "dashboard",
-            JSON.stringify({
-                [key]: value
-            })
         )
     }
 }

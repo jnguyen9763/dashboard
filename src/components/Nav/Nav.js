@@ -10,8 +10,8 @@ import { MdSettings, MdHelp } from 'react-icons/md'
 import styles from './Nav.module.css'
 import logo from '../../assets/images/logo.png'
 
-function Nav({ modalToggle, setModalToggle, draggable, setDraggable }) {
-    const [show, setShow] = useState(true)
+function Nav({ showModal, modalToggle, setModalToggle, draggable, setDraggable }) {
+    const [show, setShow] = useState(showModal)
     const [currPage, setCurrPage] = useState(1)
     const totalPages = 7
     let pages = []
@@ -107,7 +107,7 @@ function Nav({ modalToggle, setModalToggle, draggable, setDraggable }) {
                                 entering the city name. If you want your local weather back, hit 'Enter'
                                 on a blank input.</p>
                                 <p>The weather widget was made with <a href="https://openweathermap.org/" 
-                                target="_blank">Open Weather Map</a>.</p>
+                                target="_blank" rel="noopener noreferrer">Open Weather Map</a>.</p>
                             </div>
                             <div className={currPage === 7 ? undefined : styles.Hide}>
                                 <h3>End of Tutorial</h3>
