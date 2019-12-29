@@ -316,7 +316,6 @@ class Dashboard extends React.PureComponent {
                                 </div>
                             )
                         }, this)}
-                        {/* <div>Weather widget made with <a href="https://openweathermap.org/" target="_blank">Open Weather Map</a></div> */}
                     </Modal.Body>
                 </Modal>
             </>
