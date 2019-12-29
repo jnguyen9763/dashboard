@@ -9,8 +9,7 @@ function WidgetManager() {
     return (
         <div>
             <Nav
-                // showModal={document.cookie === ''} 
-                showModal={true} 
+                showModal={document.cookie === ''} 
                 modalToggle={modalToggle} 
                 setModalToggle={setModalToggle}
                 draggable={draggable}

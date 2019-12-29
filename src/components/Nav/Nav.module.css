@@ -26,7 +26,7 @@
     animation: fadeIn 1s;
 }
 
-.Pages div video {
+.Pages video {
     width: 100%;
     margin: 1rem auto;
     box-shadow: 3px 3px 5px 0px rgba(63, 63, 63, 0.25);

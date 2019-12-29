@@ -8,7 +8,7 @@ import Modal from 'react-bootstrap/Modal'
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
-import { MdSettings, MdHelp } from 'react-icons/md'
+import { MdSettings, MdHelp, MdPlayArrowOutline, MdPlayCircleOutline } from 'react-icons/md'
 import styles from './Nav.module.css'
 import logo from '../../assets/images/logo.png'
 import addWidget from '../../assets/demos/adding-widget.mp4'
@@ -101,7 +101,7 @@ function Nav({ showModal, modalToggle, setModalToggle, draggable, setDraggable }
                             </div>
                             <div className={currPage === 2 ? undefined : styles.Hide}>
                                 <h4>Adding widgets</h4>
-                                <video loop>
+                                <video loop controls controlsList="nodownload">
                                     <source src={addWidget} type="video/mp4" />
                                 </video>
                                 <p>Click on the <MdSettings /> button to see all the widgets you can add.
@@ -110,7 +110,7 @@ function Nav({ showModal, modalToggle, setModalToggle, draggable, setDraggable }
                             </div>
                             <div className={currPage === 3 ? undefined : styles.Hide}>
                                 <h4>Moving widgets</h4>
-                                <video loop>
+                                <video loop controls controlsList="nodownload">
                                     <source src={moveWidget} type="video/mp4" />
                                 </video>
                                 <p>Toggle the switch next to the <MdSettings /> button to switch drag mode 
@@ -119,7 +119,7 @@ function Nav({ showModal, modalToggle, setModalToggle, draggable, setDraggable }
                             </div>
                             <div className={currPage === 4 ? undefined : styles.Hide}>
                                 <h4>Removing widgets</h4>
-                                <video loop>
+                                <video loop controls controlsList="nodownload">
                                     <source src={removeWidget} type="video/mp4" />
                                 </video>
                                 <p>Click on the <MdSettings /> button and toggle the first switch to turn on 
@@ -128,7 +128,7 @@ function Nav({ showModal, modalToggle, setModalToggle, draggable, setDraggable }
                             </div>
                             <div className={currPage === 5 ? undefined : styles.Hide}>
                                 <h4>Widget Settings</h4>
-                                <video loop>
+                                <video loop controls controlsList="nodownload">
                                     <source src={widgetSettings} type="video/mp4" />
                                 </video>
                                 <p>Click on the <MdSettings /> button to see all widget settings.
@@ -136,7 +136,7 @@ function Nav({ showModal, modalToggle, setModalToggle, draggable, setDraggable }
                             </div>
                             <div className={currPage === 6 ? undefined : styles.Hide}>
                                 <h4>Weather Widget</h4>
-                                <video loop>
+                                <video loop controls controlsList="nodownload">
                                     <source src={weatherWidget} type="video/mp4" />
                                 </video>
                                 <p>The weather widget is really handy and has a lot of features.
