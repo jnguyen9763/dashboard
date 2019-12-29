@@ -7,7 +7,7 @@ import DropdownButton from 'react-bootstrap/DropdownButton'
 import uuid from 'uuid'
 import styles from './Dashboard.module.css'
 import wd from '../WidgetManager/WidgetDimensions'
-import { getFromLS, saveToLS } from '../WidgetManager/LocalStorage'
+import { saveToLS } from '../WidgetManager/LocalStorage'
 import Searchbar from '../Searchbar/Searchbar'
 import Quote from '../Quote/Quote'
 import DigitalClock from '../Clock/DigitalClock'
@@ -26,7 +26,8 @@ const columns = 50
 const size = window.innerWidth / columns
 const rows = Math.round(window.innerHeight / size)
 const wdKeys = Object.keys(wd)
-const originalState = getFromLS("layout") || {
+const defaultState = {
+    date: new Date(),
     layout: [{i: '.' + uuid.v4(), x: 0, y: rows, w: columns, h: 1}],
     show: false,
     deleteMode: false,
@@ -52,8 +53,12 @@ class Dashboard extends React.PureComponent {
 
     constructor(props) {
         super(props)
-        originalState.date = new Date()
-        this.state = originalState
+        if (this.props.state === undefined) this.state = defaultState
+        else {
+            const stateCopy = {...this.props.state}
+            stateCopy.date = new Date()
+            this.state = stateCopy
+        } 
         this.currWidgetSize = { i: 'default', w: 1, h: 1 }
         this.onLayoutChange = this.onLayoutChange.bind(this)
     }

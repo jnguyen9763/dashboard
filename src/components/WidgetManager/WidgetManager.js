@@ -6,17 +6,18 @@ import { getFromLS } from './LocalStorage'
 function WidgetManager() {
     const [modalToggle, setModalToggle] = useState(false)
     const [draggable, setDraggable] = useState(false)
+    const state = getFromLS("layout")
     
     return (
         <div>
             <Nav
-                showModal={getFromLS("layout") === undefined} 
+                showModal={state === undefined} 
                 modalToggle={modalToggle} 
                 setModalToggle={setModalToggle}
                 draggable={draggable}
                 setDraggable={setDraggable}    
             />
-            <Dashboard modalToggle={modalToggle} draggable={draggable} />
+            <Dashboard modalToggle={modalToggle} draggable={draggable} state={state} />
         </div>
     )
 }
