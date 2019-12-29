@@ -16,6 +16,10 @@ function Nav({ showModal, modalToggle, setModalToggle, draggable, setDraggable }
     const totalPages = 7
     let pages = []
 
+    if (showModal) {
+        document.cookie = 'firstVisit=true; expires=' + new Date(9999, 0, 1).toUTCString()
+    }
+
     for (var i = 1; i <= totalPages; i++) {
         pages.push(
             <Button 
