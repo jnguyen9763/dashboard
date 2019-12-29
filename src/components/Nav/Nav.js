@@ -6,8 +6,6 @@ import ButtonGroup from 'react-bootstrap/ButtonGroup'
 import Form from 'react-bootstrap/Form'
 import Modal from 'react-bootstrap/Modal'
 import Container from 'react-bootstrap/Container'
-import Row from 'react-bootstrap/Row'
-import Col from 'react-bootstrap/Col'
 import { MdSettings, MdHelp } from 'react-icons/md'
 import styles from './Nav.module.css'
 import logo from '../../assets/images/logo.png'
@@ -15,7 +13,7 @@ import logo from '../../assets/images/logo.png'
 function Nav({ modalToggle, setModalToggle, draggable, setDraggable }) {
     const [show, setShow] = useState(true)
     const [currPage, setCurrPage] = useState(1)
-    const totalPages = 3
+    const totalPages = 7
     let pages = []
 
     for (var i = 1; i <= totalPages; i++) {
@@ -68,38 +66,75 @@ function Nav({ modalToggle, setModalToggle, draggable, setDraggable }) {
             >
                 <Modal.Header closeButton>
                     <Modal.Title>
-                        Help
+                        Tutorial
                     </Modal.Title>
                 </Modal.Header>
                 <Modal.Body className={styles.Modal}>
                     <Container>
-                        <div className={currPage === 1 ? undefined : styles.Hide}>
-                            test 1
+                        <div className={styles.Pages}>
+                            <div className={currPage === 1 ? undefined : styles.Hide}>
+                                <h3>Welcome to Dashboard!</h3>
+                                <p>See what you can tinker with, and get started customzing your own dashboard.</p>
+                            </div>
+                            <div className={currPage === 2 ? undefined : styles.Hide}>
+                                <h4>Adding widgets</h4>
+                                <p>Click on the <MdSettings /> button to see all the widgets you can add.
+                                Simply drag any widget to where you want on your dashboard. 
+                                You can add any widget any amount of times!</p>
+                            </div>
+                            <div className={currPage === 3 ? undefined : styles.Hide}>
+                                <h4>Moving widgets</h4>
+                                <p>Toggle the switch next to the <MdSettings /> button to switch drag mode 
+                                on and off. When the switch is on, you can reposition your widgets. Switch 
+                                it off when you're happy with your layout.</p>
+                            </div>
+                            <div className={currPage === 4 ? undefined : styles.Hide}>
+                                <h4>Removing widgets</h4>
+                                <p>Click on the <MdSettings /> button and toggle the first switch to turn on 
+                                'Remove widgets' mode. Go back to your dashboard and click on any widget you 
+                                would like to remove. Switch back to 'Add widgets' mode when you are done.</p>
+                            </div>
+                            <div className={currPage === 5 ? undefined : styles.Hide}>
+                                <h4>Widget Settings</h4>
+                                <p>Click on the <MdSettings /> button to see all widget settings.
+                                You can change the settings anytime and your widgets will update accordingly!</p>
+                            </div>
+                            <div className={currPage === 6 ? undefined : styles.Hide}>
+                                <h4>Weather Widget</h4>
+                                <p>The weather widget is really handy and has a lot of features.
+                                By default, it will ask you for your location and show you the weather 
+                                around your area. However, you can always check other cities' weather by 
+                                entering the city name. If you want your local weather back, hit 'Enter'
+                                on a blank input.</p>
+                                <p>The weather widget was made with <a href="https://openweathermap.org/" 
+                                target="_blank">Open Weather Map</a>.</p>
+                            </div>
+                            <div className={currPage === 7 ? undefined : styles.Hide}>
+                                <h3>End of Tutorial</h3>
+                                <p>You can always access this tutorial by clicking on the <MdHelp /> button.</p>
+                                <p>Now that you know the ins and outs, go make a dashboard that works for you!</p>
+                            </div>
                         </div>
-                        <div className={currPage === 2 ? undefined : styles.Hide}>
-                            test 2
+                        <div className={styles.Footer}>
+                            <Button
+                                className={currPage === 1 ? styles.Invisible : undefined} 
+                                variant="link" 
+                                onClick={() => setCurrPage(currPage - 1)}
+                            >
+                                Prev
+                            </Button>
+                            <ButtonToolbar className="d-flex justify-content-center">
+                                <ButtonGroup className={styles.Pagination}>
+                                    {pages}
+                                </ButtonGroup>
+                            </ButtonToolbar>
+                            {currPage === totalPages ?
+                            <Button variant="link" onClick={() => setShow(false)}>Exit</Button> :
+                            <Button variant="link" onClick={() => setCurrPage(currPage + 1)}>Next</Button>
+                            }
                         </div>
-                        <div className={currPage === 3 ? undefined : styles.Hide}>
-                            test 3
-                        </div>
-                        <Row>
-                            <Col>
-                                <Button variant="link" onClick={() => currPage > 1 && setCurrPage(currPage - 1)}>Prev</Button>
-                            </Col>
-                            <Col sm={6}>
-                                <ButtonToolbar className="d-flex justify-content-center">
-                                    <ButtonGroup className={styles.Pagination}>
-                                        {pages}
-                                    </ButtonGroup>
-                                </ButtonToolbar>
-                            </Col>
-                            <Col>
-                                <Button variant="link" onClick={() => currPage < totalPages && setCurrPage(currPage + 1)}>Next</Button>
-                            </Col>
-                        </Row>
                     </Container>
                 </Modal.Body>
-                    {/* <div>Weather widget made with <a href="https://openweathermap.org/" target="_blank">Open Weather Map</a></div> */}
             </Modal>
         </div>
     )

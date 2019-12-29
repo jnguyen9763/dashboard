@@ -15,11 +15,15 @@
 
 .Modal button {
     color: #292b2c;
-    width: 100%;
+    padding: 0;
 }
 
 .Modal button:hover {
     color: #292b2c;
+}
+
+.Pages div {
+    animation: fadeIn 1s;
 }
 
 .Pagination button {
@@ -41,7 +45,17 @@
 }
 
 .Hide {
-    display: none;
+    display: none !important;
+}
+
+.Invisible {
+    visibility: hidden;
+}
+
+.Footer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }
 
 @keyframes fadeIn {
