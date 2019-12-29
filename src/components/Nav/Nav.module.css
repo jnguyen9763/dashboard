@@ -1,10 +1,46 @@
-.Button {
+.Nav button {
     height: 100%;
     padding: 0;
 }
 
-.Button svg {
+.Nav svg {
     height: 24px;
     width: 24px;
     color: white;
+}
+
+.Nav button:first-of-type {
+    padding-right: 0.25rem;
+}
+
+.Modal button {
+    color: #292b2c;
+    width: 100%;
+}
+
+.Modal button:hover {
+    color: #292b2c;
+}
+
+.Pagination button {
+    height: 32px;
+    width: 32px;
+    margin: 0 1rem;
+    padding: 0;
+    border-radius: 50% !important;
+}
+
+.Pagination button:hover {
+    background-color: rgba(169, 169, 169, 0.75);
+}
+
+.Active {
+    background-color: #292b2c;
+    color: white !important;
+    animation: fadeIn 1s;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
 }

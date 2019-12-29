@@ -20,7 +20,6 @@ import Note from '../Note/Note'
 import TodoList from '../TodoList/TodoList'
 import Converter from '../Converter/Converter'
 import Calculator from '../Calculator/Calculator'
-import { MdInfoOutline } from 'react-icons/md'
 
 const ReactGridLayout = WidthProvider(RGL)
 const columns = 50
