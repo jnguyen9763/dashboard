@@ -35,6 +35,9 @@
 
 .Pages div:nth-child(1) img {
     height: 80%;
+    width: 80%;
+    border: none;
+    box-shadow: none;
 }
 
 .Pagination button {
