@@ -20,7 +20,15 @@ function Nav({ modalToggle, setModalToggle, draggable, setDraggable }) {
 
     for (var i = 1; i <= totalPages; i++) {
         pages.push(
-            <Button variant="link" className={currPage === i ? styles.Active : undefined}>{i}</Button>
+            <Button 
+                key={i}
+                variant="link" 
+                value={i}
+                className={currPage === i ? styles.Active : undefined}
+                onClick={e => setCurrPage(parseInt(e.target.value))}
+            >
+                {i}
+            </Button>
         )
     }
 
@@ -65,6 +73,15 @@ function Nav({ modalToggle, setModalToggle, draggable, setDraggable }) {
                 </Modal.Header>
                 <Modal.Body className={styles.Modal}>
                     <Container>
+                        <div className={currPage === 1 ? undefined : styles.Hide}>
+                            test 1
+                        </div>
+                        <div className={currPage === 2 ? undefined : styles.Hide}>
+                            test 2
+                        </div>
+                        <div className={currPage === 3 ? undefined : styles.Hide}>
+                            test 3
+                        </div>
                         <Row>
                             <Col>
                                 <Button variant="link" onClick={() => currPage > 1 && setCurrPage(currPage - 1)}>Prev</Button>
