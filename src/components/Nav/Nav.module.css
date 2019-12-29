@@ -26,6 +26,17 @@
     animation: fadeIn 1s;
 }
 
+.Pages div video {
+    width: 100%;
+    margin: 1rem auto;
+    box-shadow: 3px 3px 5px 0px rgba(63, 63, 63, 0.25);
+    border-bottom: 0.75px solid black;
+}
+
+.Pages div:nth-child(1) img {
+    height: 80%;
+}
+
 .Pagination button {
     height: 32px;
     width: 32px;

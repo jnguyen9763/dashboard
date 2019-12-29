@@ -6,9 +6,16 @@ import ButtonGroup from 'react-bootstrap/ButtonGroup'
 import Form from 'react-bootstrap/Form'
 import Modal from 'react-bootstrap/Modal'
 import Container from 'react-bootstrap/Container'
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
 import { MdSettings, MdHelp } from 'react-icons/md'
 import styles from './Nav.module.css'
 import logo from '../../assets/images/logo.png'
+import addWidget from '../../assets/demos/adding-widget.mp4'
+import removeWidget from '../../assets/demos/removing-widget.mp4'
+import moveWidget from '../../assets/demos/moving-widget.mp4'
+import widgetSettings from '../../assets/demos/widget-settings.mp4'
+import weatherWidget from '../../assets/demos/weather-widget.mp4'
 
 function Nav({ showModal, modalToggle, setModalToggle, draggable, setDraggable }) {
     const [show, setShow] = useState(showModal)
@@ -77,34 +84,56 @@ function Nav({ showModal, modalToggle, setModalToggle, draggable, setDraggable }
                     <Container>
                         <div className={styles.Pages}>
                             <div className={currPage === 1 ? undefined : styles.Hide}>
-                                <h3>Welcome to Dashboard!</h3>
-                                <p>See what you can tinker with, and get started customzing your own dashboard.</p>
+                                <Row>
+                                    <Col sm={7}>
+                                        <h3>Welcome to Dashboard!</h3>
+                                        <p>See what you can tinker with, and get started customizing your own dashboard.</p>
+                                    </Col>
+                                    <Col className="d-flex justify-content-center align-items-center">
+                                        <img src={logo} alt="logo" />
+                                    </Col>
+                                </Row>
                             </div>
                             <div className={currPage === 2 ? undefined : styles.Hide}>
                                 <h4>Adding widgets</h4>
+                                <video autoPlay loop>
+                                    <source src={addWidget} type="video/mp4" />
+                                </video>
                                 <p>Click on the <MdSettings /> button to see all the widgets you can add.
                                 Simply drag any widget to where you want on your dashboard. 
                                 You can add any widget any amount of times!</p>
                             </div>
                             <div className={currPage === 3 ? undefined : styles.Hide}>
                                 <h4>Moving widgets</h4>
+                                <video autoPlay loop>
+                                    <source src={moveWidget} type="video/mp4" />
+                                </video>
                                 <p>Toggle the switch next to the <MdSettings /> button to switch drag mode 
                                 on and off. When the switch is on, you can reposition your widgets. Switch 
                                 it off when you're happy with your layout.</p>
                             </div>
                             <div className={currPage === 4 ? undefined : styles.Hide}>
                                 <h4>Removing widgets</h4>
+                                <video autoPlay loop>
+                                    <source src={removeWidget} type="video/mp4" />
+                                </video>
                                 <p>Click on the <MdSettings /> button and toggle the first switch to turn on 
                                 'Remove widgets' mode. Go back to your dashboard and click on any widget you 
                                 would like to remove. Switch back to 'Add widgets' mode when you are done.</p>
                             </div>
                             <div className={currPage === 5 ? undefined : styles.Hide}>
                                 <h4>Widget Settings</h4>
+                                <video autoPlay loop>
+                                    <source src={widgetSettings} type="video/mp4" />
+                                </video>
                                 <p>Click on the <MdSettings /> button to see all widget settings.
                                 You can change the settings anytime and your widgets will update accordingly!</p>
                             </div>
                             <div className={currPage === 6 ? undefined : styles.Hide}>
                                 <h4>Weather Widget</h4>
+                                <video autoPlay loop>
+                                    <source src={weatherWidget} type="video/mp4" />
+                                </video>
                                 <p>The weather widget is really handy and has a lot of features.
                                 By default, it will ask you for your location and show you the weather 
                                 around your area. However, you can always check other cities' weather by 
