@@ -20,7 +20,7 @@ import weatherWidget from '../../assets/demos/weather-widget.mp4'
 function Nav({ showModal, modalToggle, setModalToggle, draggable, setDraggable }) {
     const [show, setShow] = useState(showModal)
     const [currPage, setCurrPage] = useState(1)
-    const totalPages = 7
+    const totalPages = 8
     let pages = []
 
     if (showModal) {
@@ -149,6 +149,18 @@ function Nav({ showModal, modalToggle, setModalToggle, draggable, setDraggable }
                                 target="_blank" rel="noopener noreferrer">Open Weather Map</a>.</p>
                             </div>
                             <div className={currPage === 7 ? undefined : styles.Hide}>
+                                <h4>Credits</h4>
+                                <p>These are some of the resources that I used to create this web app!</p>
+                                <p>The weather widget was made with <a href="https://openweathermap.org/" 
+                                target="_blank" rel="noopener noreferrer">Open Weather Map</a>.</p>
+                                <p>Search engines' icons came from <a href="https://fontawesome.com/" 
+                                target="_blank" rel="noopener noreferrer">Font Awesome</a>.</p>
+                                <p>All svgs came from <a href="https://material.io/design/" 
+                                target="_blank" rel="noopener noreferrer">Material Design</a>.</p>
+                                <p>The analog clock was made by Wojciech Maj. Here is the <a href="https://github.com/wojtekmaj/react-clock" 
+                                target="_blank" rel="noopener noreferrer">github repo</a>.</p>
+                            </div>
+                            <div className={currPage === 8 ? undefined : styles.Hide}>
                                 <h3>End of Tutorial</h3>
                                 <p>You can always access this tutorial by clicking on the <MdHelp /> button.</p>
                                 <p>Now that you know the ins and outs, go make a dashboard that works for you!</p>
