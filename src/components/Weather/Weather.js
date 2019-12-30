@@ -8,8 +8,8 @@ import styles from './Weather.module.css'
 
 function Weather({ unit }) {
     const [location, setLocation] = useState('')
-    const [description, setDescription] = useState('')
-    const [icon, setIcon] = useState(0)
+    const [description, setDescription] = useState('Sunny')
+    const [icon, setIcon] = useState("https://openweathermap.org/img/wn/01d@2x.png")
     const [temperature, setTemperature] = useState(0)
     const [feelsLike, setFeelsLike] = useState(0)
     const [tempK, setTempK] = useState(0)
@@ -79,7 +79,7 @@ function Weather({ unit }) {
                         <h6>{temperature}°{unit}</h6>
                     </Col>
                     <Col>
-                        {icon !== 0 && <img src={icon} alt={description} height={64} width={64} />}
+                        <img src={icon} alt={description} height={64} width={64} />
                         <h5>{description}</h5>
                     </Col>
                     <Col className={styles.Info}>
