@@ -152,6 +152,7 @@ class Dashboard extends React.PureComponent {
                                     w: e.w,
                                     h: e.h
                                 }}
+                                className={this.props.draggable ? styles.DragMode : undefined}
                             >
                                 {(() => {
                                     switch(e.i.split('.')[0]) {

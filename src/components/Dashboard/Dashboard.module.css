@@ -8,6 +8,10 @@
     border-bottom: 1px solid #dee2e6;
 }
 
+.DragMode {
+    border: dashed black 1px;
+}
+
 .Delete {
     position: absolute;
     top: 0;
