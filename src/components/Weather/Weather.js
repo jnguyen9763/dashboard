@@ -65,7 +65,7 @@ function Weather({ unit }) {
             setDescription(res.data.weather[0].main)
             setTempK(res.data.main.temp)
             setFeelsK(res.data.main.feels_like)
-            setIcon("http://openweathermap.org/img/wn/" + res.data.weather[0].icon + "@2x.png")
+            setIcon("https://openweathermap.org/img/wn/" + res.data.weather[0].icon + "@2x.png")
         })
     }
 
