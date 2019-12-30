@@ -46,13 +46,13 @@ function Weather({ unit }) {
         if (e.key === 'Enter') {
             if (e.target.value === '') {
                 window.navigator.geolocation.getCurrentPosition(location => {
-                    const url = "http://api.openweathermap.org/data/2.5/weather?lat=" 
+                    const url = "https://api.openweathermap.org/data/2.5/weather?lat=" 
                     + location.coords.latitude + "&lon=" + location.coords.longitude + "&APPID=" + API_KEY
                     fetchWeather(url)
                 })
             }
             else {
-                const url = "http://api.openweathermap.org/data/2.5/weather?q=" 
+                const url = "https://api.openweathermap.org/data/2.5/weather?q=" 
                 + e.target.value.replace(/\s/g, '') + "&APPID=" + API_KEY
                 fetchWeather(url)
             }
