@@ -18,14 +18,14 @@ function Weather({ unit }) {
     useEffect(() => {
         window.navigator.geolocation.getCurrentPosition(location => {
             const API_KEY = process.env.REACT_APP_WEATHER_API_KEY
-            const url = "http://api.openweathermap.org/data/2.5/weather?lat=" 
+            const url = "https://api.openweathermap.org/data/2.5/weather?lat=" 
             + location.coords.latitude + "&lon=" + location.coords.longitude + "&APPID=" + API_KEY
             axios.get(url).then(res => {
                 setLocation(res.data.name)
                 setDescription(res.data.weather[0].main)
                 setTempK(res.data.main.temp)
                 setFeelsK(res.data.main.feels_like)
-                setIcon("http://openweathermap.org/img/wn/" + res.data.weather[0].icon + "@2x.png")
+                setIcon("https://openweathermap.org/img/wn/" + res.data.weather[0].icon + "@2x.png")
             })
         })
     }, [])
