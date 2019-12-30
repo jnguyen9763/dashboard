@@ -79,7 +79,7 @@ function Weather({ unit }) {
                         <h6>{temperature}°{unit}</h6>
                     </Col>
                     <Col>
-                        <img src={icon} alt={description} height={64} width={64} />
+                        {icon !== 0 && <img src={icon} alt={description} height={64} width={64} />}
                         <h5>{description}</h5>
                     </Col>
                     <Col className={styles.Info}>
