@@ -49,7 +49,7 @@ function Nav({ showModal, modalToggle, setModalToggle, draggable, setDraggable }
     return (
         <div className={styles.Nav}>
             <Navbar bg="dark" variant="dark" className="justify-content-between">
-                <Navbar.Brand href="/">
+                <Navbar.Brand href={process.env.PUBLIC_URL}>
                     <img
                         src={logo}
                         width="30"
