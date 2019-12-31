@@ -24,8 +24,7 @@ function Nav({ showModal, modalToggle, setModalToggle, draggable, setDraggable }
     let pages = []
 
     if (showModal) {
-        document.cookie = 'same-site-cookie=foo; SameSite=Lax' + new Date(9999, 0, 1).toUTCString()
-        document.cookie = 'cross-site-cookie=bar; SameSite=None; Secure' + new Date(9999, 0, 1).toUTCString()
+        document.cookie = 'firstVisit=true; expires=' + new Date(9999, 0, 1).toUTCString()
     }
 
     for (var i = 1; i <= totalPages; i++) {
