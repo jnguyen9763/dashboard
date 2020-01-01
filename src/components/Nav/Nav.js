@@ -144,8 +144,6 @@ function Nav({ showModal, modalToggle, setModalToggle, draggable, setDraggable }
                                 around your area. However, you can always check other cities' weather by 
                                 entering the city name. If you want your local weather back, hit 'Enter'
                                 on a blank input.</p>
-                                <p>The weather widget was made with <a href="https://openweathermap.org/" 
-                                target="_blank" rel="noopener noreferrer">Open Weather Map</a>.</p>
                             </div>
                             <div className={currPage === 7 ? undefined : styles.Hide}>
                                 <h4>Credits</h4>
