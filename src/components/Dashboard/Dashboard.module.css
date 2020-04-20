@@ -9,7 +9,7 @@
 }
 
 .DragMode {
-    border: dashed black 1px;
+    border: solid rgba(0, 0, 0, 0.25) 1px;
 }
 
 .Delete {

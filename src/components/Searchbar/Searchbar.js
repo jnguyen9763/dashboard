@@ -12,7 +12,7 @@ import bingLogo from '../../assets/images/bing.png'
 function Searchbar() {
     const [input, setInput] = useState('')
     const [searchEngine, setSearchEngine] = useState("Google")
-    const [searchEngineIcon, setSearchEngineIcon] = useState(googleLogo)
+    const [searchEngineIcon, setSearchEngineIcon] = useState(<img src={googleLogo} alt="google search" />)
 
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -38,22 +38,22 @@ function Searchbar() {
         setSearchEngine(e)
         switch(e) {
             case "Google":
-                setSearchEngineIcon(googleLogo)
+                setSearchEngineIcon(<img src={googleLogo} alt="google search" />)
                 break;
             case "Yahoo":
-                setSearchEngineIcon(yahooLogo)
+                setSearchEngineIcon(<img src={yahooLogo} alt="yahoo search" />)
                 break;
             case "Bing":
-                setSearchEngineIcon(bingLogo)
+                setSearchEngineIcon(<img src={bingLogo} alt="bing search" />)
                 break;
             default:
-                setSearchEngineIcon(googleLogo)
+                setSearchEngineIcon(<img src={googleLogo} alt="google search" />)
         }
     }
 
     return (
         <Form onSubmit={handleSubmit} className={styles.Searchbar}>
-            <img src={searchEngineIcon} alt="google" />
+            {searchEngineIcon}
             <DropdownButton
                 id="searchEngineDropdown"
                 title=""
