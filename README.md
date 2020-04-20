@@ -2,7 +2,7 @@
 
 This web app features a drag-and-drop dashboard that can be customized with 12 different widgets. 
 
-Link: https://github.com/jnguyen9763/dashboard
+Link: https://jnguyen9763.github.io/dashboard/
 
 # Features
 - A tutorial that pops up for new users
