@@ -9,15 +9,18 @@ import googleLogo from '../../assets/images/google.png'
 import yahooLogo from '../../assets/images/yahoo.png'
 import bingLogo from '../../assets/images/bing.png'
 
-function Searchbar() {
+function Searchbar({ searchEngine, updateEngine }) {
     const [input, setInput] = useState('')
-    const [searchEngine, setSearchEngine] = useState("Google")
-    const [searchEngineIcon, setSearchEngineIcon] = useState(<img src={googleLogo} alt="google search" />)
+    const [engine, setEngine] = useState(searchEngine)
+    let logo = googleLogo
+    if (searchEngine === 'Yahoo') logo = yahooLogo
+    if (searchEngine === 'Bing') logo = bingLogo
+    const [searchEngineIcon, setSearchEngineIcon] = useState(logo)
 
     const handleSubmit = (e) => {
         e.preventDefault()
         let url = '';
-        switch(searchEngine) {
+        switch(engine) {
             case "Google":
                 url += 'http://google.com/search?q='
                 break;
@@ -35,34 +38,35 @@ function Searchbar() {
     }
 
     const changeSearchEngine = (e) => {
-        setSearchEngine(e)
+        setEngine(e)
+        updateEngine(e)
         switch(e) {
             case "Google":
-                setSearchEngineIcon(<img src={googleLogo} alt="google search" />)
+                setSearchEngineIcon(googleLogo)
                 break;
             case "Yahoo":
-                setSearchEngineIcon(<img src={yahooLogo} alt="yahoo search" />)
+                setSearchEngineIcon(yahooLogo)
                 break;
             case "Bing":
-                setSearchEngineIcon(<img src={bingLogo} alt="bing search" />)
+                setSearchEngineIcon(bingLogo)
                 break;
             default:
-                setSearchEngineIcon(<img src={googleLogo} alt="google search" />)
+                setSearchEngineIcon(googleLogo)
         }
     }
 
     return (
         <Form onSubmit={handleSubmit} className={styles.Searchbar}>
-            {searchEngineIcon}
+            <img src={searchEngineIcon} alt="search engine" />
             <DropdownButton
                 id="searchEngineDropdown"
                 title=""
                 variant="link"
                 className={styles.Dropdown}
             >
-                <Dropdown.Item onSelect={changeSearchEngine} eventKey="Google">Google</Dropdown.Item>
-                <Dropdown.Item onSelect={changeSearchEngine} eventKey="Yahoo">Yahoo</Dropdown.Item>
-                <Dropdown.Item onSelect={changeSearchEngine} eventKey="Bing">Bing</Dropdown.Item>
+                <Dropdown.Item onSelect={changeSearchEngine} eventKey="Google">Google Search</Dropdown.Item>
+                <Dropdown.Item onSelect={changeSearchEngine} eventKey="Yahoo">Yahoo Search</Dropdown.Item>
+                <Dropdown.Item onSelect={changeSearchEngine} eventKey="Bing">Bing Search</Dropdown.Item>
             </DropdownButton>
             <Form.Control 
                 type="text" 

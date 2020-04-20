@@ -34,7 +34,8 @@ const originalState = getFromLS("layout") || {
     hours24: false,
     clockWithNums: false,
     tempUnit: 'F',
-    quoteUpdateTime: 'Day'
+    quoteUpdateTime: 'Day',
+    searchEngine: 'Google'
 }
 
 class Dashboard extends React.PureComponent {
@@ -69,7 +70,8 @@ class Dashboard extends React.PureComponent {
             prevState.show !== this.state.show ||
             prevState.deleteMode !== this.state.deleteMode ||
             prevState.tempUnit !== this.state.tempUnit ||
-            prevState.quoteUpdateTime !== this.state.quoteUpdateTime) {
+            prevState.quoteUpdateTime !== this.state.quoteUpdateTime ||
+            prevState.searchEngine !== this.state.searchEngine) {
             saveToLS("layout", this.state)
         }
     }
@@ -103,6 +105,10 @@ class Dashboard extends React.PureComponent {
         const tempLayout = [...this.state.layout]
         const newLayout = tempLayout.filter(widget => widget.i !== id)
         this.setState({layout: newLayout})
+    }
+
+    updateSearchEngine = (engine) => {
+        this.setState({searchEngine: engine})
     }
 
     updateWidgetData = (id, data) => {
@@ -157,7 +163,7 @@ class Dashboard extends React.PureComponent {
                                 {(() => {
                                     switch(e.i.split('.')[0]) {
                                         case 'searchbar':
-                                            return <Searchbar />
+                                            return <Searchbar searchEngine={this.state.searchEngine} updateEngine={this.updateSearchEngine} />
                                         case 'quote':
                                             return <Quote time={this.getTimeForQuote()} />
                                         case 'digitalClock':
@@ -287,7 +293,7 @@ class Dashboard extends React.PureComponent {
                                     {(() => {
                                         switch(w) {
                                             case 'searchbar':
-                                                return <Searchbar />
+                                                return <Searchbar searchEngine={this.state.searchEngine} updateEngine={this.updateSearchEngine} />
                                             case 'quote':
                                                 return <Quote time={this.getTimeForQuote()} />
                                             case 'digitalClock':

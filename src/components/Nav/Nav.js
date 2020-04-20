@@ -150,8 +150,8 @@ function Nav({ showModal, modalToggle, setModalToggle, draggable, setDraggable }
                                 <p>These are some of the resources that I used to create this web app!</p>
                                 <p>The weather widget was made with <a href="https://openweathermap.org/" 
                                 target="_blank" rel="noopener noreferrer">Open Weather Map</a>.</p>
-                                <p>Search engines' icons came from <a href="https://fontawesome.com/" 
-                                target="_blank" rel="noopener noreferrer">Font Awesome</a>.</p>
+                                <p>Search engines' icons came from <a href="https://flaticon.com/" 
+                                target="_blank" rel="noopener noreferrer">Flaticon</a>.</p>
                                 <p>All svgs came from <a href="https://material.io/design/" 
                                 target="_blank" rel="noopener noreferrer">Material Design</a>.</p>
                                 <p>The analog clock was made by Wojciech Maj. Here is the <a href="https://github.com/wojtekmaj/react-clock" 

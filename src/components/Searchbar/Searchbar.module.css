@@ -3,6 +3,7 @@
     align-items: center;
     width: 98%;
     margin: 1%;
+    padding-left: 0.5rem;
     border-radius: 50px;
     box-shadow: 3px 3px 5px 0px rgba(63,63,63,0.25);
     background-color: white;
@@ -10,8 +11,6 @@
 
 .Searchbar img {
     height: 24px;
-    width: 24px;
-    margin-left: 0.5rem;
 }
 
 .Searchbar input[type="text"], .Dropdown button {
