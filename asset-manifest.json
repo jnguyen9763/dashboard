@@ -1,19 +1,19 @@
 {
   "files": {
-    "main.css": "/dashboard/static/css/main.178bc571.chunk.css",
-    "main.js": "/dashboard/static/js/main.1c8f108d.chunk.js",
-    "main.js.map": "/dashboard/static/js/main.1c8f108d.chunk.js.map",
+    "main.css": "/dashboard/static/css/main.be64c829.chunk.css",
+    "main.js": "/dashboard/static/js/main.e634d27f.chunk.js",
+    "main.js.map": "/dashboard/static/js/main.e634d27f.chunk.js.map",
     "runtime-main.js": "/dashboard/static/js/runtime-main.f1fa6400.js",
     "runtime-main.js.map": "/dashboard/static/js/runtime-main.f1fa6400.js.map",
     "static/css/2.a97c96f3.chunk.css": "/dashboard/static/css/2.a97c96f3.chunk.css",
-    "static/js/2.72843d43.chunk.js": "/dashboard/static/js/2.72843d43.chunk.js",
-    "static/js/2.72843d43.chunk.js.map": "/dashboard/static/js/2.72843d43.chunk.js.map",
+    "static/js/2.f055fb50.chunk.js": "/dashboard/static/js/2.f055fb50.chunk.js",
+    "static/js/2.f055fb50.chunk.js.map": "/dashboard/static/js/2.f055fb50.chunk.js.map",
     "index.html": "/dashboard/index.html",
-    "precache-manifest.7defdc6012373de7960dee04c6ce67fa.js": "/dashboard/precache-manifest.7defdc6012373de7960dee04c6ce67fa.js",
+    "precache-manifest.47a065200a8a523cccf1b2a1508202bf.js": "/dashboard/precache-manifest.47a065200a8a523cccf1b2a1508202bf.js",
     "service-worker.js": "/dashboard/service-worker.js",
     "static/css/2.a97c96f3.chunk.css.map": "/dashboard/static/css/2.a97c96f3.chunk.css.map",
-    "static/css/main.178bc571.chunk.css.map": "/dashboard/static/css/main.178bc571.chunk.css.map",
-    "static/js/2.72843d43.chunk.js.LICENSE": "/dashboard/static/js/2.72843d43.chunk.js.LICENSE",
+    "static/css/main.be64c829.chunk.css.map": "/dashboard/static/css/main.be64c829.chunk.css.map",
+    "static/js/2.f055fb50.chunk.js.LICENSE": "/dashboard/static/js/2.f055fb50.chunk.js.LICENSE",
     "static/media/adding-widget.mp4": "/dashboard/static/media/adding-widget.440a3c7f.mp4",
     "static/media/moving-widget.mp4": "/dashboard/static/media/moving-widget.cdd3ef84.mp4",
     "static/media/removing-widget.mp4": "/dashboard/static/media/removing-widget.362af86e.mp4",
@@ -23,8 +23,8 @@
   "entrypoints": [
     "static/js/runtime-main.f1fa6400.js",
     "static/css/2.a97c96f3.chunk.css",
-    "static/js/2.72843d43.chunk.js",
-    "static/css/main.178bc571.chunk.css",
-    "static/js/main.1c8f108d.chunk.js"
+    "static/js/2.f055fb50.chunk.js",
+    "static/css/main.be64c829.chunk.css",
+    "static/js/main.e634d27f.chunk.js"
   ]
 }
