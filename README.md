@@ -4,6 +4,8 @@ This web app features a drag-and-drop dashboard that can be customized with 12 d
 
 Link: https://jnguyen9763.github.io/dashboard/
 
+![Alt Text](https://github.com/jnguyen9763/dashboard/blob/master/src/assets/demos/demo.gif)
+
 # Features
 - A tutorial that pops up for new users
 - Ability to add any widget any number of times
